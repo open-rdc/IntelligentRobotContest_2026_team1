@@ -258,169 +258,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Connector:Conn_01x02_Pin"
-			(pin_names
-				(offset 1.016)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "J"
-				(at 0 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Conn_01x02_Pin"
-				(at 0 -5.08 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Generic connector, single row, 01x02, script generated"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_locked" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "connector"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Connector*:*_1x??_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Conn_01x02_Pin_1_1"
-				(rectangle
-					(start 0.8636 0.127)
-					(end 0 -0.127)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(rectangle
-					(start 0.8636 -2.413)
-					(end 0 -2.667)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 0) (xy 0.8636 0)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -2.54) (xy 0.8636 -2.54)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at 5.08 0 180)
-					(length 3.81)
-					(name "Pin_1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 -2.54 180)
-					(length 3.81)
-					(name "Pin_2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Connector:Conn_01x02_Socket"
 			(pin_names
 				(offset 1.016)
@@ -1614,191 +1451,6 @@
 					(at 0 -3.81 90)
 					(length 2.794)
 					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Motor:Motor_DC"
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "M"
-				(at 2.54 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "Motor_DC"
-				(at 2.54 -5.08 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 -2.286 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 -2.286 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "DC Motor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "DC Motor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "PinHeader*P2.54mm* TerminalBlock*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Motor_DC_0_0"
-				(polyline
-					(pts
-						(xy -1.27 -3.302) (xy -1.27 0.508) (xy 0 -2.032) (xy 1.27 0.508) (xy 1.27 -3.302)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Motor_DC_0_1"
-				(polyline
-					(pts
-						(xy 0 2.032) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 1.7272) (xy 0 2.0828)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 0 -1.524)
-					(radius 3.2512)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -4.7752) (xy 0 -5.1816)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -7.62) (xy 0 -7.112)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Motor_DC_1_1"
-				(pin passive line
-					(at 0 5.08 270)
-					(length 2.54)
-					(name "+"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -7.62 90)
-					(length 2.54)
-					(name "-"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4440,16 +4092,6 @@
 	)
 	(wire
 		(pts
-			(xy 284.48 52.07) (xy 284.48 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1ff08290-fea0-4fe8-bf5f-1bdbecb456bb")
-	)
-	(wire
-		(pts
 			(xy 135.89 129.54) (xy 127 129.54)
 		)
 		(stroke
@@ -4580,16 +4222,6 @@
 	)
 	(wire
 		(pts
-			(xy 379.73 52.07) (xy 379.73 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4031c3bd-312a-4c70-8f6a-9c7090aa73dc")
-	)
-	(wire
-		(pts
 			(xy 154.94 86.36) (xy 154.94 101.6)
 		)
 		(stroke
@@ -4607,16 +4239,6 @@
 			(type default)
 		)
 		(uuid "4394e0f8-960c-421a-80dc-ae861cd20f0c")
-	)
-	(wire
-		(pts
-			(xy 379.73 46.99) (xy 384.81 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "45a0e67d-0b3f-4c65-b8da-333e6fdf3b18")
 	)
 	(wire
 		(pts
@@ -4660,26 +4282,6 @@
 	)
 	(wire
 		(pts
-			(xy 379.73 54.61) (xy 379.73 59.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5006992f-8dec-4616-a748-a49a2c8895d7")
-	)
-	(wire
-		(pts
-			(xy 284.48 119.38) (xy 294.64 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "502bcba3-9d52-4196-ad69-70f2fddf83ed")
-	)
-	(wire
-		(pts
 			(xy 148.59 213.36) (xy 149.86 213.36)
 		)
 		(stroke
@@ -4697,16 +4299,6 @@
 			(type default)
 		)
 		(uuid "57936127-ac50-4cac-9584-04fabe84af94")
-	)
-	(wire
-		(pts
-			(xy 374.65 52.07) (xy 379.73 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "62902035-83bd-40d6-bce7-7963c5e8421b")
 	)
 	(wire
 		(pts
@@ -4747,26 +4339,6 @@
 			(type default)
 		)
 		(uuid "68ca909a-70bd-4853-9726-185c9a24b89a")
-	)
-	(wire
-		(pts
-			(xy 374.65 119.38) (xy 384.81 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6b10ae72-898b-42f0-bcc7-38c9d0c8fb48")
-	)
-	(wire
-		(pts
-			(xy 284.48 54.61) (xy 284.48 59.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6cd390c8-ba0b-458e-a340-e93d44f69f31")
 	)
 	(wire
 		(pts
@@ -4830,16 +4402,6 @@
 	)
 	(wire
 		(pts
-			(xy 284.48 59.69) (xy 295.91 59.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7f2d2ae9-6a05-4281-bff2-28e0ebdd054c")
-	)
-	(wire
-		(pts
 			(xy 72.39 228.6) (xy 74.93 228.6)
 		)
 		(stroke
@@ -4887,16 +4449,6 @@
 			(type default)
 		)
 		(uuid "88c91e94-5e8c-4a2c-9626-3676178e1ecf")
-	)
-	(wire
-		(pts
-			(xy 284.48 127) (xy 284.48 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "891e9f5f-14f2-4180-bd56-0a7266333ae7")
 	)
 	(wire
 		(pts
@@ -4967,16 +4519,6 @@
 			(type default)
 		)
 		(uuid "97ac022b-d216-4fdd-ac0c-da7b1d08bc0c")
-	)
-	(wire
-		(pts
-			(xy 374.65 132.08) (xy 384.81 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9b071a82-aaae-4333-b8c6-e8f07b00f243")
 	)
 	(wire
 		(pts
@@ -5060,16 +4602,6 @@
 	)
 	(wire
 		(pts
-			(xy 284.48 132.08) (xy 294.64 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b56dea7f-7245-47a6-aafc-16650b872456")
-	)
-	(wire
-		(pts
 			(xy 72.39 215.9) (xy 74.93 215.9)
 		)
 		(stroke
@@ -5077,16 +4609,6 @@
 			(type default)
 		)
 		(uuid "b5c2032b-026a-46a2-a4ad-ea69aefef889")
-	)
-	(wire
-		(pts
-			(xy 374.65 54.61) (xy 379.73 54.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bf278342-a9d9-4b09-b2d8-8f326f0e06b1")
 	)
 	(wire
 		(pts
@@ -5150,16 +4672,6 @@
 	)
 	(wire
 		(pts
-			(xy 284.48 46.99) (xy 295.91 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c9dc5263-3db4-46a5-a094-7f353ba53fc6")
-	)
-	(wire
-		(pts
 			(xy 237.49 102.87) (xy 237.49 119.38)
 		)
 		(stroke
@@ -5210,16 +4722,6 @@
 	)
 	(wire
 		(pts
-			(xy 374.65 119.38) (xy 374.65 124.46)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d6bcf3be-1a56-4e96-86b5-5dd4c7e19a63")
-	)
-	(wire
-		(pts
 			(xy 177.8 210.82) (xy 180.34 210.82)
 		)
 		(stroke
@@ -5237,16 +4739,6 @@
 			(type default)
 		)
 		(uuid "d8e4dbed-cb65-404f-9b6e-a604f333c83d")
-	)
-	(wire
-		(pts
-			(xy 379.73 59.69) (xy 384.81 59.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d913874f-9d78-4b79-8656-71c710eb647d")
 	)
 	(wire
 		(pts
@@ -5287,16 +4779,6 @@
 			(type default)
 		)
 		(uuid "e58efb7a-d56d-4f58-a622-567794c7a804")
-	)
-	(wire
-		(pts
-			(xy 284.48 124.46) (xy 284.48 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e74ba665-f36a-4274-b641-c90740918050")
 	)
 	(wire
 		(pts
@@ -5417,16 +4899,6 @@
 			(type default)
 		)
 		(uuid "f608cd01-cf8a-4cd0-beea-8801cc0efae8")
-	)
-	(wire
-		(pts
-			(xy 374.65 127) (xy 374.65 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f7246db4-f0d1-418a-abf9-b9a7be10577f")
 	)
 	(wire
 		(pts
@@ -6567,73 +6039,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:Conn_01x02_Pin")
-		(at 279.4 52.07 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "3a579e8a-2fe7-46b7-a070-e28e6b91c030")
-		(property "Reference" "J4"
-			(at 282.702 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Conn_01x02_Pin"
-			(at 276.352 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 279.4 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 279.4 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 279.4 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "5b99e41e-2906-4533-894e-8f017c3e9b5c")
-		)
-		(pin "2"
-			(uuid "b7b21e83-bbe7-4a89-a52e-06a880658189")
-		)
-		(instances
-			(project "robocon_main"
-				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
-					(reference "J4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 87.63 101.6 0)
 		(unit 1)
@@ -6853,76 +6258,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Motor:Motor_DC")
-		(at 384.81 124.46 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "506415ba-5cfa-410f-a927-03c3184b40a7")
-		(property "Reference" "M4"
-			(at 389.89 125.7299 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Motor_DC"
-			(at 389.89 128.2699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 384.81 126.746 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 384.81 126.746 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "DC Motor"
-			(at 384.81 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "52d36a9e-fb68-4140-a617-6d26f1c304ee")
-		)
-		(pin "2"
-			(uuid "95f97a9a-c428-4889-9c6d-a3a4976352c8")
-		)
-		(instances
-			(project "robocon_main"
-				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
-					(reference "M4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+12V")
 		(at 99.06 45.72 0)
 		(unit 1)
@@ -6983,73 +6318,6 @@
 			(project "robocon_main"
 				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
 					(reference "#PWR015")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:Conn_01x02_Pin")
-		(at 369.57 124.46 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "54f76f58-3d6b-42aa-9ac7-8a43f23dc86d")
-		(property "Reference" "J8"
-			(at 371.348 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Conn_01x02_Pin"
-			(at 364.998 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 369.57 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 369.57 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 369.57 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "56a6f3fb-b3d4-4a9f-9488-c13af56e1f4e")
-		)
-		(pin "2"
-			(uuid "e805b8d3-607d-49e0-b106-3653cc08e965")
-		)
-		(instances
-			(project "robocon_main"
-				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
-					(reference "J8")
 					(unit 1)
 				)
 			)
@@ -9103,74 +8371,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:Conn_01x02_Pin")
-		(at 369.57 52.07 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e1460c98-d665-48de-bd3e-c2678a83fb77")
-		(property "Reference" "J2"
-			(at 370.205 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Conn_01x02_Pin"
-			(at 370.205 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 369.57 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 369.57 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 369.57 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "95712673-fc5b-49a5-874c-2b2fcc098ab8")
-		)
-		(pin "2"
-			(uuid "8f37ca62-ec2f-4f0f-9445-fd3d641ab25f")
-		)
-		(instances
-			(project ""
-				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
-					(reference "J2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 144.78 101.6 0)
 		(unit 1)
@@ -9231,213 +8431,6 @@
 			(project ""
 				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
 					(reference "#PWR05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:Conn_01x02_Pin")
-		(at 279.4 124.46 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "ebf09e27-0400-4214-834a-a472ee430916")
-		(property "Reference" "J6"
-			(at 282.702 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Conn_01x02_Pin"
-			(at 276.352 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 279.4 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 279.4 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 279.4 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "dd46a65b-c8da-46fe-a7c1-a739768d41d6")
-		)
-		(pin "2"
-			(uuid "2e6f1ab9-c6a1-4535-a61a-036594adc15a")
-		)
-		(instances
-			(project "robocon_main"
-				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
-					(reference "J6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Motor:Motor_DC")
-		(at 295.91 52.07 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "ed5b7755-8583-418a-8d19-39e8de3aa299")
-		(property "Reference" "M1"
-			(at 300.99 53.3399 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Motor_DC"
-			(at 300.99 55.8799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 295.91 54.356 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 295.91 54.356 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "DC Motor"
-			(at 295.91 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6b4bd809-b772-4e60-8761-ba63d1aae2ae")
-		)
-		(pin "2"
-			(uuid "ef10c861-6ad9-4958-a6f6-2b6f8222765d")
-		)
-		(instances
-			(project ""
-				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
-					(reference "M1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Motor:Motor_DC")
-		(at 384.81 52.07 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "f9699465-a13f-454b-bc10-45533a129330")
-		(property "Reference" "M2"
-			(at 389.89 53.3399 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Motor_DC"
-			(at 389.89 55.8799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 384.81 54.356 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 384.81 54.356 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "DC Motor"
-			(at 384.81 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "47b382d8-3994-4a3f-be56-9513b22b1beb")
-		)
-		(pin "2"
-			(uuid "ebf9e682-acd1-4b9d-99bf-9e52b2c86cea")
-		)
-		(instances
-			(project "robocon_main"
-				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
-					(reference "M2")
 					(unit 1)
 				)
 			)
@@ -9529,76 +8522,6 @@
 			(project ""
 				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
 					(reference "U8")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Motor:Motor_DC")
-		(at 294.64 124.46 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "fc076f49-9dcf-4df7-9ce1-3379cd08c4cf")
-		(property "Reference" "M3"
-			(at 299.72 125.7299 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Motor_DC"
-			(at 299.72 128.2699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 294.64 126.746 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 294.64 126.746 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "DC Motor"
-			(at 294.64 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f7746d9c-1da5-4f46-b3e4-ceac94118796")
-		)
-		(pin "2"
-			(uuid "a00c528a-aae9-4dfd-a18a-f4008f05f63b")
-		)
-		(instances
-			(project "robocon_main"
-				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
-					(reference "M3")
 					(unit 1)
 				)
 			)
