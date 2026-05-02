@@ -6771,7 +6771,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_AMASS:AMASS_XT30U-M_1x02_P5.0mm_Vertical"
 			(at 29.21 49.53 0)
 			(effects
 				(font
@@ -7041,7 +7041,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_JST:JST_PH_B5B-PH-K_1x05_P2.00mm_Vertical"
 			(at 38.1 257.81 0)
 			(effects
 				(font
@@ -7205,7 +7205,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_JST:JST_XA_B02B-XASK-1-A_1x02_P2.50mm_Vertical"
 			(at 160.02 134.62 0)
 			(effects
 				(font
@@ -7528,7 +7528,7 @@
 				)
 			)
 		)
-		(property "Value" "to_SERVO"
+		(property "Value" "to_SERVO3"
 			(at 95.885 208.28 0)
 			(effects
 				(font
@@ -7536,7 +7536,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
 			(at 95.25 213.36 0)
 			(effects
 				(font
@@ -8300,7 +8300,7 @@
 				)
 			)
 		)
-		(property "Value" "to_SERVO"
+		(property "Value" "to_SERVO1"
 			(at 38.735 208.28 0)
 			(effects
 				(font
@@ -8308,7 +8308,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
 			(at 38.1 213.36 0)
 			(effects
 				(font
@@ -8458,7 +8458,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
 			(at 369.57 111.76 0)
 			(effects
 				(font
@@ -8932,7 +8932,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Pad_2.0x2.0mm"
 			(at 87.63 41.91 0)
 			(effects
 				(font
@@ -9064,7 +9064,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "3557-15_KEY"
+		(property "Footprint" "my_footprints_library:3557-15_KEY"
 			(at 57.15 45.72 0)
 			(effects
 				(font
@@ -9799,7 +9799,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TestPoint:TestPoint_Pad_2.0x2.0mm"
 			(at 41.91 97.79 0)
 			(effects
 				(font
@@ -10082,7 +10082,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_JST:JST_XA_B02B-XASK-1-A_1x02_P2.50mm_Vertical"
 			(at 130.81 134.62 0)
 			(effects
 				(font
@@ -10289,7 +10289,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector:NS-Tech_Grove_1x04_P2mm_Vertical"
 			(at 38.1 176.53 0)
 			(effects
 				(font
@@ -10506,7 +10506,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_JST:JST_XA_B02B-XASK-1-A_1x02_P2.50mm_Vertical"
 			(at 99.06 134.62 0)
 			(effects
 				(font
@@ -11622,22 +11622,22 @@
 		(fields_autoplaced yes)
 		(uuid "dc6fea3e-48c8-4285-9857-a467bb9b2ce6")
 		(property "Reference" "J8"
-			(at 68.6046 205.6412 0)
+			(at 68.6046 205.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "to_SERVO"
-			(at 68.6046 208.1812 0)
+		(property "Value" "to_SERVO2"
+			(at 68.6046 208.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
 			(at 67.9696 213.2612 0)
 			(effects
 				(font
@@ -11897,7 +11897,7 @@
 				)
 			)
 		)
-		(property "Value" "to_SERVO"
+		(property "Value" "to_SERVO4"
 			(at 122.555 207.01 0)
 			(effects
 				(font
@@ -11905,7 +11905,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
 			(at 121.92 212.09 0)
 			(effects
 				(font
@@ -12067,7 +12067,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_JST:JST_XA_B02B-XASK-1-A_1x02_P2.50mm_Vertical"
 			(at 191.77 134.62 0)
 			(effects
 				(font
