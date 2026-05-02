@@ -4062,6 +4062,16 @@
 		)
 		(uuid "005c1924-6408-4744-a287-d42c28a41498")
 	)
+	(text "MOTOR_DRIVER"
+		(exclude_from_sim no)
+		(at 96.012 124.714 0)
+		(effects
+			(font
+				(size 2.54 2.54)
+			)
+		)
+		(uuid "39903e6c-df7f-47b5-8458-7a1bf5c23a6d")
+	)
 	(text "CONNECTOR"
 		(exclude_from_sim no)
 		(at 38.1 116.586 0)
@@ -4412,6 +4422,16 @@
 	)
 	(wire
 		(pts
+			(xy 147.32 137.16) (xy 135.89 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0b4c6b7c-779f-42b3-b920-6f74ab615ef6")
+	)
+	(wire
+		(pts
 			(xy 44.45 210.82) (xy 44.45 220.98)
 		)
 		(stroke
@@ -4482,6 +4502,16 @@
 	)
 	(wire
 		(pts
+			(xy 208.28 134.62) (xy 196.85 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "22791d16-ac18-42e5-96a3-60dc2e3d58a2")
+	)
+	(wire
+		(pts
 			(xy 358.14 208.28) (xy 358.14 218.44)
 		)
 		(stroke
@@ -4529,6 +4559,16 @@
 			(type default)
 		)
 		(uuid "2c085168-7a81-4d69-8653-1b59aa786c9e")
+	)
+	(wire
+		(pts
+			(xy 115.57 134.62) (xy 104.14 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2c291a58-ff00-425a-80a8-95aa13b877e3")
 	)
 	(wire
 		(pts
@@ -4862,6 +4902,16 @@
 	)
 	(wire
 		(pts
+			(xy 115.57 137.16) (xy 104.14 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "652324eb-786a-4ab2-8f91-da2809730ec1")
+	)
+	(wire
+		(pts
 			(xy 115.57 55.88) (xy 115.57 71.12)
 		)
 		(stroke
@@ -5082,6 +5132,16 @@
 	)
 	(wire
 		(pts
+			(xy 176.53 137.16) (xy 165.1 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b21b33b-aa91-4252-a855-fd4e5600f9a5")
+	)
+	(wire
+		(pts
 			(xy 201.93 204.47) (xy 203.2 204.47)
 		)
 		(stroke
@@ -5159,6 +5219,16 @@
 			(type default)
 		)
 		(uuid "9ef6e1d3-7fd9-417c-a7cb-110d72232e67")
+	)
+	(wire
+		(pts
+			(xy 147.32 134.62) (xy 135.89 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9f3cd1de-aa68-47e9-a7f5-22d631a40067")
 	)
 	(wire
 		(pts
@@ -5282,6 +5352,16 @@
 	)
 	(wire
 		(pts
+			(xy 208.28 137.16) (xy 196.85 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3faada1-76e8-429b-9594-a7acc187a98c")
+	)
+	(wire
+		(pts
 			(xy 34.29 52.07) (xy 34.29 97.79)
 		)
 		(stroke
@@ -5339,6 +5419,16 @@
 			(type default)
 		)
 		(uuid "bec58ba6-c0ad-4094-bb11-cf90387ffae4")
+	)
+	(wire
+		(pts
+			(xy 176.53 134.62) (xy 165.1 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c1b257c4-8f99-43cd-b7e5-1d6e1ef8bd16")
 	)
 	(wire
 		(pts
@@ -5890,6 +5980,16 @@
 		)
 		(uuid "09e888ff-0029-42e4-ab51-3c93915032d3")
 	)
+	(label "DC_PWM6"
+		(at 176.53 137.16 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "0f46a2a2-7c94-4534-a43a-8c469a71815b")
+	)
 	(label "ANALOG_LINE"
 		(at 62.23 257.81 180)
 		(effects
@@ -5909,6 +6009,16 @@
 			(justify left bottom)
 		)
 		(uuid "16c3b448-4c35-4006-9cdd-17dade10395b")
+	)
+	(label "DC_PWM5"
+		(at 176.53 134.62 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "18421453-8451-4399-9a15-a39747ac325d")
 	)
 	(label "COLOR_R"
 		(at 233.68 196.85 0)
@@ -5990,6 +6100,16 @@
 		)
 		(uuid "44bd52e0-8298-4c80-861e-538b1a56c1f7")
 	)
+	(label "DC_PWM2"
+		(at 115.57 137.16 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "4be0e0a5-bd30-4105-88d3-0255bede29ab")
+	)
 	(label "DC_PWM8"
 		(at 332.74 114.3 0)
 		(effects
@@ -6050,6 +6170,16 @@
 		)
 		(uuid "5c4a7ea6-d18a-47ff-b9c0-e3ee56500f2a")
 	)
+	(label "DC_PWM8"
+		(at 208.28 137.16 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "5f7d73b9-a78a-4018-9aab-89042f72dd48")
+	)
 	(label "DC_PWM5"
 		(at 266.7 111.76 0)
 		(effects
@@ -6099,6 +6229,16 @@
 			(justify right bottom)
 		)
 		(uuid "8abe0133-ce65-4165-be43-3836a6867049")
+	)
+	(label "DC_PWM7"
+		(at 208.28 134.62 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "8f410831-bd51-41b7-984b-8d196f5abc7f")
 	)
 	(label "ANALOG_LINE"
 		(at 233.68 204.47 0)
@@ -6161,6 +6301,16 @@
 		(uuid "ab23f71d-4e75-4e69-bf6e-2a8e0a3d5122")
 	)
 	(label "DC_PWM4"
+		(at 147.32 137.16 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ab4e5538-9cd3-4490-8ba3-3f338fb77a42")
+	)
+	(label "DC_PWM4"
 		(at 331.47 49.53 0)
 		(effects
 			(font
@@ -6169,6 +6319,16 @@
 			(justify left bottom)
 		)
 		(uuid "ac84449e-a40c-495e-bed7-54b238e4c859")
+	)
+	(label "DC_PWM3"
+		(at 147.32 134.62 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "b8affb01-39ed-477a-827e-64d6ae5de9e4")
 	)
 	(label "SERVO_PWM1"
 		(at 58.42 215.9 180)
@@ -6199,6 +6359,16 @@
 			(justify right bottom)
 		)
 		(uuid "ce01f4d3-01bb-4e8b-8d37-85375c20b528")
+	)
+	(label "DC_PWM1"
+		(at 115.57 134.62 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "cf28d4e9-05aa-4a22-bedf-364c43aa01bd")
 	)
 	(label "COLOR_G"
 		(at 53.34 144.78 0)
@@ -7004,6 +7174,74 @@
 			(project "robocon_main"
 				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
 					(reference "U5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 160.02 134.62 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "23aaf4e0-785f-4994-b36d-8597b8f6bf0f")
+		(property "Reference" "J14"
+			(at 160.655 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "to_MD3"
+			(at 160.655 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 160.02 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 160.02 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 160.02 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6baa72f9-b4e7-491d-88b9-b42e6e23dd4b")
+		)
+		(pin "2"
+			(uuid "28276c5c-25dc-4000-b18b-e8fba21e2194")
+		)
+		(instances
+			(project "robocon_main"
+				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
+					(reference "J14")
 					(unit 1)
 				)
 			)
@@ -9820,6 +10058,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 130.81 134.62 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b2c0d76e-ab57-46f8-be4f-43ade11e7a11")
+		(property "Reference" "J15"
+			(at 131.445 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "to_MD2"
+			(at 131.445 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 130.81 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 130.81 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 130.81 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d26b4ad0-c656-4a80-a44b-9852a94a7b18")
+		)
+		(pin "2"
+			(uuid "3527ecae-750e-4d54-903b-3e76789d3e55")
+		)
+		(instances
+			(project "robocon_main"
+				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
+					(reference "J15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+5V")
 		(at 115.57 55.88 0)
 		(unit 1)
@@ -10170,6 +10475,74 @@
 			(project ""
 				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
 					(reference "J4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 99.06 134.62 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bfe8189a-32ad-476f-9eeb-8b944155c49f")
+		(property "Reference" "J13"
+			(at 99.695 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "to_MD1"
+			(at 99.695 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 99.06 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 99.06 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 99.06 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f083d4a0-1b50-4ee7-89b1-055741c9921d")
+		)
+		(pin "2"
+			(uuid "3dedcb9e-227b-411f-89ae-53674d738351")
+		)
+		(instances
+			(project ""
+				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
+					(reference "J13")
 					(unit 1)
 				)
 			)
@@ -11663,6 +12036,74 @@
 			(project ""
 				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
 					(reference "U8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 191.77 134.62 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "fdb33eb8-416b-4c89-bfc0-42e76ee67016")
+		(property "Reference" "J16"
+			(at 192.405 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "to_MD4"
+			(at 192.405 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 191.77 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 191.77 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 191.77 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "93ece16d-8056-46f8-8ae7-73a8451253dc")
+		)
+		(pin "2"
+			(uuid "d6a7f778-90f6-40c7-866a-f3c31ca54b6b")
+		)
+		(instances
+			(project "robocon_main"
+				(path "/718d4c8f-024a-4bf2-adfe-b4a66aa43437"
+					(reference "J16")
 					(unit 1)
 				)
 			)
