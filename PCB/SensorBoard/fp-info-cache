@@ -1,4 +1,4 @@
-27257167479333903
+27236765589988345
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -2813,6 +2813,13 @@ speaker CUI
 0
 2
 2
+CH340K
+SOP100P600X160-11N
+
+
+0
+11
+11
 Calibration_Scale
 Gauge_10mm_Type1_CopperTop
 Gauge, Massstab, 10mm, CopperTop, Type 1,
@@ -63489,6 +63496,13 @@ heatsink
 0
 0
 0
+ICM20608
+IAM20680HP
+16 Lead LGA (3x3x0.75)-1-1
+Integrated Circuit
+0
+16
+16
 Inductor_SMD
 L_6.3x6.3_H3
 Choke, SMD, 6.3x6.3mm 3mm height
@@ -71805,6 +71819,13 @@ Yellow 5381 Series LED
 0
 2
 2
+MP-3014-1100-50-70
+LED_MP-3014-1100-50-70
+
+
+0
+2
+2
 Module
 A20_OLINUXINO_LIME2
 A20 Olinuxino LIME2, 1.2GHz, 512-1024MB RAM, Micro-SD, NAND or eMMC, 1000Mbit Ethernet
@@ -74654,13 +74675,6 @@ threaded screw
 0
 4
 1
-NJL7502R
-NJL7502R
-
-
-0
-2
-2
 NetTie
 NetTie-2_SMD_Pad0.5mm
 Net tie, 2 pin, 0.5mm square SMD pads
@@ -74745,6 +74759,13 @@ net tie
 0
 4
 4
+OKL
+OKL
+
+
+0
+4
+3
 OptoDevice
 ADNS-9800
 Laser Gaming Sensor ADNS-9800
@@ -90439,13 +90460,6 @@ Zetex SM8
 0
 8
 8
-Package_SO
-名称未設定
-
-
-0
-0
-0
 Package_SON
 Diodes_PowerDI3333-8
 Diodes Incorporated PowerDI3333-8, Plastic Dual Flat No Lead Package, 3.3x3.3x0.8mm Body, https://www.diodes.com/assets/Package-Files/PowerDI3333-8.pdf
@@ -96347,13 +96361,6 @@ WiFi IEEE802.11 b/g/n
 0
 44
 44
-RP2040
-RP2040
-
-
-0
-35
-35
 Relay_SMD
 Relay_2P2T_10x6mm_TE_IMxxG
 Signal Relay, 10x6mm, 2 Form C, Gull Wings, https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7F108-98001%7FZ.1%7Fpdf%7FEnglish%7FENG_DS_108-98001_Z.1.pdf
@@ -98678,13 +98685,34 @@ rotary encoder illuminated switch vertical
 0
 9
 8
-SKRPACE010 2
+S7136
+DIP575W60P254L560H210Q4N
+S7136
+Integrated Circuit
+0
+4
+4
+S9032-02
+S9032-02
+
+
+0
+6
+6
+SKRPACE010
 SW_SKRPACE010
 
 
 0
 4
 4
+SSSS213202
+SSSS213202
+<b>SSSS213202</b><br>
+
+0
+6
+6
 Sensor
 ASAIR_AM2302_P2.54mm_Lead2.75mm_TabDown
 Temperature and humidity module, http://akizukidenshi.com/download/ds/aosong/AM2302.pdf
@@ -100792,34 +100820,13 @@ Logo WEEE
 0
 0
 0
-TMUX1204DGSR
-DGS0010A-IPC_A
+TB67H450
+SOIC127P599X175-9N
 
-TMUX1204DGSR 
-0
-10
-10
-TMUX1204DGSR
-DGS0010A-IPC_B
 
-TMUX1204DGSR 
 0
-10
-10
-TMUX1204DGSR
-DGS0010A-IPC_C
-
-TMUX1204DGSR 
-0
-10
-10
-TMUX1204DGSR
-DGS0010A-MFG
-
-TMUX1204DGSR 
-0
-10
-10
+9
+9
 TerminalBlock
 TerminalBlock_MaiXu_MX126-5.0-02P_1x02_P5.00mm
 terminal block MaiXu MX126-5.0-02P, 2 pins, pitch 5mm, size 10.5x7.8mm, drill diameter 1.3mm, pad diameter 2.8mm, https://www.lcsc.com/datasheet/lcsc_datasheet_2309150913_MAX-MX126-5-0-03P-GN01-Cu-S-A_C5188435.pdf, script-generated using https://gitlab.com/kicad/libraries/kicad-footprint-generator/-/tree/master/scripts/TerminalBlock_MaiXu
@@ -107960,3 +107967,10 @@ Varistor VF
 0
 2
 2
+reRo
+reRorogo
+
+
+0
+0
+0
