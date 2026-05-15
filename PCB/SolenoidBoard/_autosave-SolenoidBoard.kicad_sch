@@ -5944,7 +5944,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0239ca37-4761-4e96-97f0-9a5c80e61639")
-		(property "Reference" "#PWR016"
+		(property "Reference" "#PWR011"
 			(at 102.87 91.44 0)
 			(effects
 				(font
@@ -5993,7 +5993,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR016")
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -6146,7 +6146,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0cf037ff-be1a-4a49-b45d-9f09915faf75")
-		(property "Reference" "J4"
+		(property "Reference" "J7"
 			(at 200.66 93.98 0)
 			(effects
 				(font
@@ -6199,7 +6199,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "J4")
+					(reference "J7")
 					(unit 1)
 				)
 			)
@@ -6215,7 +6215,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0ecf2749-6fcd-4116-b167-920b1b5d42f0")
-		(property "Reference" "R7"
+		(property "Reference" "R3"
 			(at 78.74 125.73 90)
 			(effects
 				(font
@@ -6266,7 +6266,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "R7")
+					(reference "R3")
 					(unit 1)
 				)
 			)
@@ -6282,7 +6282,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "126ec24f-7fc3-4a09-84fa-71fb58c30799")
-		(property "Reference" "Q5"
+		(property "Reference" "Q2"
 			(at 193.04 115.57 90)
 			(effects
 				(font
@@ -6428,7 +6428,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "Q5")
+					(reference "Q2")
 					(unit 1)
 				)
 			)
@@ -6511,7 +6511,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "17be5601-8ae0-482a-841b-04d852e8d6d5")
-		(property "Reference" "J2"
+		(property "Reference" "J3"
 			(at 165.1 81.28 0)
 			(effects
 				(font
@@ -6561,7 +6561,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "J2")
+					(reference "J3")
 					(unit 1)
 				)
 			)
@@ -6646,7 +6646,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1bdd8ae3-f1cd-40c5-ae01-3599aabb884b")
-		(property "Reference" "#PWR017"
+		(property "Reference" "#PWR08"
 			(at 83.82 119.38 0)
 			(effects
 				(font
@@ -6695,7 +6695,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR017")
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -6711,7 +6711,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1c3542e1-6812-4756-ad6c-f20a76ee29a3")
-		(property "Reference" "#PWR023"
+		(property "Reference" "#PWR024"
 			(at 219.71 148.59 0)
 			(effects
 				(font
@@ -6760,7 +6760,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR023")
+					(reference "#PWR024")
 					(unit 1)
 				)
 			)
@@ -6776,7 +6776,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1c7ed8ae-cc5e-42ef-a78f-137a0a0b215b")
-		(property "Reference" "#PWR014"
+		(property "Reference" "#PWR017"
 			(at 135.89 80.01 0)
 			(effects
 				(font
@@ -6825,7 +6825,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR014")
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -6841,7 +6841,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1e8f0a09-1638-4dad-a7dd-66fac868c6ed")
-		(property "Reference" "#PWR024"
+		(property "Reference" "#PWR025"
 			(at 255.27 148.59 0)
 			(effects
 				(font
@@ -6890,7 +6890,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR024")
+					(reference "#PWR025")
 					(unit 1)
 				)
 			)
@@ -6906,7 +6906,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "221a18b8-73a0-43ab-bcaf-6b5bbaec40b9")
-		(property "Reference" "R6"
+		(property "Reference" "R2"
 			(at 78.74 100.33 90)
 			(effects
 				(font
@@ -6957,7 +6957,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "R6")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -7058,7 +7058,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SOD-323HEUS2H_TOS"
+		(property "Footprint" "CUHS20S60:SOD-323HEUS2H_TOS"
 			(at 113.03 25.4 0)
 			(effects
 				(font
@@ -7112,7 +7112,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "29cf771f-d6bd-4d15-ae02-2109966cc8c8")
-		(property "Reference" "D2"
+		(property "Reference" "D1"
 			(at 152.4 93.9165 90)
 			(effects
 				(font
@@ -7165,7 +7165,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "D2")
+					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -7180,7 +7180,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2ba1e979-7716-4705-a046-c69602324276")
-		(property "Reference" "#PWR022"
+		(property "Reference" "#PWR014"
 			(at 102.87 156.21 0)
 			(effects
 				(font
@@ -7229,7 +7229,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR022")
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -7314,7 +7314,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2ec528c4-d2a8-439f-977b-081ee60db8ec")
-		(property "Reference" "#PWR010"
+		(property "Reference" "#PWR06"
 			(at 68.58 59.69 0)
 			(effects
 				(font
@@ -7363,7 +7363,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR010")
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
@@ -7379,7 +7379,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "38650fb4-0271-4e42-99bf-341537024760")
-		(property "Reference" "#PWR06"
+		(property "Reference" "#PWR016"
 			(at 128.27 40.64 0)
 			(effects
 				(font
@@ -7428,7 +7428,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR06")
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -7443,7 +7443,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "406bd690-1c34-437b-b3d9-5b662b73c139")
-		(property "Reference" "#PWR020"
+		(property "Reference" "#PWR013"
 			(at 102.87 129.54 0)
 			(effects
 				(font
@@ -7492,7 +7492,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR020")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -8124,7 +8124,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5914c6d3-304e-4263-a4e0-4c223a8d8a1e")
-		(property "Reference" "R8"
+		(property "Reference" "R4"
 			(at 78.74 152.4 90)
 			(effects
 				(font
@@ -8175,7 +8175,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "R8")
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -8191,7 +8191,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5b21b375-e6ea-43ab-bda7-c06fd740803b")
-		(property "Reference" "R5"
+		(property "Reference" "R1"
 			(at 78.74 72.39 90)
 			(effects
 				(font
@@ -8242,7 +8242,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "R5")
+					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -8258,7 +8258,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5b6c8487-c0f7-4fe1-bbaf-6cc95dde8a54")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR021"
 			(at 157.48 115.57 0)
 			(effects
 				(font
@@ -8307,7 +8307,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR08")
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)
@@ -8323,7 +8323,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7203467b-ac00-48d5-9a29-d4af37696994")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR022"
 			(at 158.75 26.67 0)
 			(effects
 				(font
@@ -8372,7 +8372,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR01")
+					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -8464,7 +8464,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "77c7cd10-55ce-433c-b57b-37c5f1a15654")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR03"
 			(at 44.45 25.4 0)
 			(effects
 				(font
@@ -8513,7 +8513,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR02")
+					(reference "#PWR03")
 					(unit 1)
 				)
 			)
@@ -8529,7 +8529,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "78b5834d-9edd-4ecb-8a25-40fe371d0c1c")
-		(property "Reference" "#PWR018"
+		(property "Reference" "#PWR02"
 			(at 30.48 96.52 0)
 			(effects
 				(font
@@ -8578,7 +8578,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR018")
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -8594,7 +8594,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7adb5182-133c-4836-9f01-08cc03f5a7ea")
-		(property "Reference" "#PWR07"
+		(property "Reference" "#PWR018"
 			(at 137.16 40.64 0)
 			(effects
 				(font
@@ -8643,7 +8643,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR07")
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
@@ -8659,7 +8659,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7b079d19-5892-47fa-86d5-974ee5d2b258")
-		(property "Reference" "#PWR011"
+		(property "Reference" "#PWR015"
 			(at 106.68 59.69 0)
 			(effects
 				(font
@@ -8708,7 +8708,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR011")
+					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -8724,7 +8724,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8148dba7-e9e8-4484-acba-b96e2c5ff435")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#PWR020"
 			(at 149.86 115.57 0)
 			(effects
 				(font
@@ -8773,7 +8773,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR09")
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -8788,7 +8788,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "829b92ee-045a-4dee-bafb-cc3872cfd8b7")
-		(property "Reference" "#PWR013"
+		(property "Reference" "#PWR012"
 			(at 102.87 104.14 0)
 			(effects
 				(font
@@ -8837,7 +8837,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR013")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -8853,7 +8853,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "83aa40f6-0a53-48e9-ab5b-1941dd25d8f8")
-		(property "Reference" "R11"
+		(property "Reference" "R8"
 			(at 189.23 134.62 0)
 			(effects
 				(font
@@ -8906,7 +8906,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "R11")
+					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -8922,7 +8922,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8b86b6bb-5b7a-4d89-9c75-3ef765373bf4")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR023"
 			(at 184.15 148.59 0)
 			(effects
 				(font
@@ -8971,7 +8971,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR025")
+					(reference "#PWR023")
 					(unit 1)
 				)
 			)
@@ -9063,7 +9063,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "914901bc-c7aa-40e0-9b71-24f9421315dc")
-		(property "Reference" "#PWR015"
+		(property "Reference" "#PWR07"
 			(at 83.82 91.44 0)
 			(effects
 				(font
@@ -9112,7 +9112,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR015")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -9267,7 +9267,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "95615e88-77ba-4c46-935a-4ef0a4e1f3d9")
-		(property "Reference" "J7"
+		(property "Reference" "J8"
 			(at 236.22 93.98 0)
 			(effects
 				(font
@@ -9320,7 +9320,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "J7")
+					(reference "J8")
 					(unit 1)
 				)
 			)
@@ -9336,7 +9336,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9b7f83af-a29d-461b-a94b-8b297a280620")
-		(property "Reference" "J8"
+		(property "Reference" "J2"
 			(at 22.225 68.58 0)
 			(effects
 				(font
@@ -9400,7 +9400,7 @@
 		(instances
 			(project ""
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "J8")
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -9416,7 +9416,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9c9e2411-3ffc-4a74-b643-8c34375d00d8")
-		(property "Reference" "J3"
+		(property "Reference" "J4"
 			(at 165.1 86.36 0)
 			(effects
 				(font
@@ -9466,7 +9466,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "J3")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -9482,7 +9482,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9cd59198-ff0f-44e9-be56-f66a5a7e93c0")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR01"
 			(at 22.86 39.37 0)
 			(effects
 				(font
@@ -9531,7 +9531,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR03")
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)
@@ -9547,7 +9547,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a85044b4-048e-496f-b161-db8a4e4a96d7")
-		(property "Reference" "#PWR021"
+		(property "Reference" "#PWR010"
 			(at 83.82 171.45 0)
 			(effects
 				(font
@@ -9596,7 +9596,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR021")
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -9612,7 +9612,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b0ac0a8b-1153-42ab-9f33-a46d0edf563c")
-		(property "Reference" "#PWR012"
+		(property "Reference" "#PWR019"
 			(at 148.59 59.69 0)
 			(effects
 				(font
@@ -9661,7 +9661,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR012")
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -10027,7 +10027,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c2a5873b-0dd6-46a3-bef6-a23457aa73e7")
-		(property "Reference" "#PWR019"
+		(property "Reference" "#PWR09"
 			(at 83.82 144.78 0)
 			(effects
 				(font
@@ -10076,7 +10076,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "#PWR019")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -10438,7 +10438,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ed077fc8-2cde-4ac3-940d-d430d1e2b637")
-		(property "Reference" "R1"
+		(property "Reference" "R5"
 			(at 149.86 78.7399 0)
 			(effects
 				(font
@@ -10491,7 +10491,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "R1")
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -10507,7 +10507,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ef8d8f25-a6c5-4240-85c2-d92d6fd67db4")
-		(property "Reference" "R3"
+		(property "Reference" "R6"
 			(at 151.13 45.72 0)
 			(effects
 				(font
@@ -10560,7 +10560,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "R3")
+					(reference "R6")
 					(unit 1)
 				)
 			)
@@ -10576,7 +10576,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f9b7e3da-64fc-4eb4-8906-9e79cafd13ad")
-		(property "Reference" "R2"
+		(property "Reference" "R7"
 			(at 152.4 101.6 0)
 			(effects
 				(font
@@ -10629,7 +10629,7 @@
 		(instances
 			(project "SolenoidBoard"
 				(path "/1f86eace-0353-4d45-a177-8ce113d3afe6"
-					(reference "R2")
+					(reference "R7")
 					(unit 1)
 				)
 			)
