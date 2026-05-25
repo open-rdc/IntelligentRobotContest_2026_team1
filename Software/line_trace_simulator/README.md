@@ -21,11 +21,8 @@ python examples/p_control.py
 
 ## 使い方
 
-シミュレータには、従来の「コールバック方式」と、新しく追加された「マイコン方式」の2つの記述方法があります。
-制御関数の引数の数によって自動的に切り替わります。
-
-### 1. マイコン方式（おすすめ）
-関数が1つの引数 (`robot`) を受け取る場合、プログラムは別スレッドで実行され、マイコンのように逐次的な制御を書くことができます。
+シミュレータへの制御プログラムは、1つの引数 (`robot`) を受け取る関数として定義します。
+プログラムは別スレッドで実行され、マイコンのように逐次的な制御を書くことができます。
 
 ```python
 from simulator import Simulator
@@ -53,29 +50,20 @@ sim.set_robot_pose(400, 120, 1.57)
 sim.run()
 ```
 
-### 2. コールバック方式
-関数が2つの引数 (`line_sensors`, `state`) を受け取る場合、毎ステップ（0.001秒ごと）に呼び出されます。
+**マイコン方式で利用できる主なAPI:**
+- `robot.move_motor(left, right)`: 左右のモータの出力を設定します（-1.0～1.0）
+- `robot.wait(seconds)`: 指定したシミュレーション時間（秒）だけ待機します
+- `robot.get_line_sensors()`: 各ラインセンサの値のリストを取得します
+- `robot.get_imu_yaw()`: 仮想IMUのヨー角を取得します（初期位置またはリセット時を0度とする）
+- `robot.reset_imu()`: 現在の姿勢角を0度としてIMUをリセットします
 
-```python
-from simulator import Simulator
-
-def my_controller(line_sensors, state) :
-    # line_sensors: 各ラインセンサのアナログ値 [0.0(黒)～1.0(白)] のリスト
-    # state: {'x', 'y', 'theta', 'v', 'omega', 'time'}
-    # 戻り値: (左モータ, 右モータ) 各 -1.0～1.0
-    return (0.3, 0.3)
-
-sim = Simulator('courses/simple_oval.png', controller_fn=my_controller)
-sim.set_robot_pose(400, 120, 1.57)  # 初期位置
-sim.run()
-```
 
 ## キー操作
 
 | キー | 機能 |
 |------|------|
 | `Space` | 開始/停止 |
-| `R` | リセット |
+| `R` | リセット（制御プログラムも最初から実行し直されます） |
 | `↑` / `↓` | 速度倍率の変更 |
 | `T` | 軌跡表示ON/OFF |
 | `ESC` | 終了 |

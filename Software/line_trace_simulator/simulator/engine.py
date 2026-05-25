@@ -40,7 +40,6 @@ class Simulator :
         self._sim_time = 0.0
         self._line_sensor_values = []
         self._user_thread = None
-        self._is_micro_mode = False
         self._renderer = None
 
     def set_robot_params(self, **kwargs) :
@@ -70,7 +69,7 @@ class Simulator :
 
     def _reset(self) :
         # 古いスレッドを停止させる
-        if self._is_micro_mode and self.api :
+        if self.api :
             with self.api._lock :
                 self.api._resetting = True
                 self.api._time_cond.notify_all()
@@ -93,33 +92,24 @@ class Simulator :
         print('[Simulator] Reset')
         
         # ユーザースレッドを再スタート
-        if self._is_micro_mode :
-            self._start_user_thread()
+        self._start_user_thread()
 
     def _start_user_thread(self) :
-        # ユーザー制御関数がマイコンモードの場合、スレッドを起動
+        # ユーザー制御関数をスレッドで起動
         if not self._controller_fn :
             return False
             
-        # 引数の数をチェック
-        sig = inspect.signature(self._controller_fn)
-        if len(sig.parameters) == 1 :
-            # マイコンモード
-            self._is_micro_mode = True
-            def run_user_program() :
-                try :
-                    self._controller_fn(self.api)
-                except SystemExit :
-                    pass  # リセットや終了による安全な停止
-                except Exception as e :
-                    print(f"[Simulator] User program error: {e}")
-            
-            self._user_thread = threading.Thread(target=run_user_program, daemon=True)
-            self._user_thread.start()
-            return True
-            
-        self._is_micro_mode = False
-        return False
+        def run_user_program() :
+            try :
+                self._controller_fn(self.api)
+            except SystemExit :
+                pass  # リセットや終了による安全な停止
+            except Exception as e :
+                print(f"[Simulator] User program error: {e}")
+        
+        self._user_thread = threading.Thread(target=run_user_program, daemon=True)
+        self._user_thread.start()
+        return True
 
     def _handle_events(self) :
         # イベント処理 (Falseを返すと終了)
@@ -152,36 +142,21 @@ class Simulator :
         # 1ステップ分の物理演算とセンサ読み取り
         self._read_sensors()
 
-        if self._is_micro_mode :
-            # マイコンモード: APIからの指令を読み取る
-            with self.api._lock :
-                u_left = self.api.motor_l
-                u_right = self.api.motor_r
-        else :
-            # コールバックモード: 関数の呼び出し
-            state = self.robot.state.copy()
-            state['time'] = self._sim_time
-            result = self._controller_fn(self._line_sensor_values, state)
-            
-            if isinstance(result, (tuple, list)) :
-                u_left, u_right = result[0], result[1]
-            elif isinstance(result, dict) :
-                u_left = result.get('left', 0)
-                u_right = result.get('right', 0)
-            else :
-                u_left, u_right = 0, 0
+        # APIからの指令を読み取る
+        with self.api._lock :
+            u_left = self.api.motor_l
+            u_right = self.api.motor_r
 
         # 状態更新
         self.robot.update(u_left, u_right, self.dt)
         self._sim_time += self.dt
         
-        # マイコンモード: APIの状態を更新し、待機中のスレッドを起こす
-        if self._is_micro_mode :
-            with self.api._lock :
-                self.api.sim_time = self._sim_time
-                self.api.line_sensors = self._line_sensor_values
-                self.api.imu_yaw = self.imu.read_yaw(self.robot.theta)
-                self.api._time_cond.notify_all()
+        # APIの状態を更新し、待機中のスレッドを起こす
+        with self.api._lock :
+            self.api.sim_time = self._sim_time
+            self.api.line_sensors = self._line_sensor_values
+            self.api.imu_yaw = self.imu.read_yaw(self.robot.theta)
+            self.api._time_cond.notify_all()
 
     def run(self, auto_start=True) :
         # pygameウィンドウを開きシミュレーションを開始する
@@ -201,9 +176,7 @@ class Simulator :
         print(f'[Simulator] Sensor values: {[f"{v:.2f}" for v in self._line_sensor_values]}')
         
         if self._start_user_thread() :
-            print('[Simulator] Running in MICROCONTROLLER mode (1 arg)')
-        else :
-            print('[Simulator] Running in CALLBACK mode (2 args)')
+            print('[Simulator] Running in MICROCONTROLLER mode')
 
         if auto_start :
             self._running = True
@@ -231,7 +204,7 @@ class Simulator :
                           f'imu={self.imu.read_yaw(self.robot.theta):.2f}')
 
             # 描画
-            imu_yaw = self.api.get_imu_yaw() if self._is_micro_mode else self.imu.read_yaw(self.robot.theta)
+            imu_yaw = self.api.get_imu_yaw()
             self._renderer.draw(self.robot, self.line_sensor, self._line_sensor_values,
                                 self._sim_time, self.speed_multiplier,
                                 self._running, imu_yaw)

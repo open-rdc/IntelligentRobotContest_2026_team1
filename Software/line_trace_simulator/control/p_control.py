@@ -9,8 +9,8 @@ from simulator import Simulator
 def main_control(robot) :
     cross_count = 0
     
-    robot.move_motor(0.5, 0.5)
-    robot.wait(0.01)
+    # robot.move_motor(0.5, 0.5)
+    # robot.wait(0.01)
 
     while True :
         line = robot.get_line_sensors()
@@ -30,11 +30,11 @@ def main_control(robot) :
 
             if cross_count == 6 :
                 while abs(robot.get_imu_yaw()) > 0.05 :
-                    robot.move_motor(0.2, -0.2)
+                    robot.move_motor(0.3, -0.3)
                     robot.wait(0.01)
             elif cross_count == 11 :
                 robot.move_motor(0.5, 0.5)
-                robot.wait(1.5)
+                robot.wait(2.0)
                 robot.move_motor(0, 0)
                 break
 
