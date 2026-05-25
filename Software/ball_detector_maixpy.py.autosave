@@ -22,7 +22,7 @@ uart = UART(UART.UART1, 115200, 8, 1, 0, timeout=1000, read_buf_len=4096)
 #   B_maixpy = B_cv - 128
 # ============================================================
 COLOR_THRESHOLDS = {
-    #                 (L_min, L_max, A_min, A_max, B_min, B_max)
+    #         (L_min, L_max, A_min, A_max, B_min, B_max)
     'red':    (5,  100,  10,  127,   0,  127),
     'yellow': (20, 100, -30,   20,  30,  127),
     'blue':   (5,  100, -20,   70, -128, -28),
