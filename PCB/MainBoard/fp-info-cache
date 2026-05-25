@@ -1,4 +1,4 @@
-27220794842117752
+27229683930082825
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -96333,6 +96333,13 @@ WiFi IEEE802.11 b/g/n
 0
 44
 44
+RP2040
+RP2040
+
+
+0
+35
+35
 Relay_SMD
 Relay_2P2T_10x6mm_TE_IMxxG
 Signal Relay, 10x6mm, 2 Form C, Gull Wings, https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7F108-98001%7FZ.1%7Fpdf%7FEnglish%7FENG_DS_108-98001_Z.1.pdf
@@ -107905,9 +107912,37 @@ Varistor VF
 2
 2
 my_footprints_library
-AE-TB67H450
+1P2T_toggle
 
 
 0
+3
+3
+my_footprints_library
+3557-15_KEY
+
+3557-15 
+0
+4
+4
+my_footprints_library
+AE-TB67H450
+モータドライバ
+モータドライバ
+0
 8
 8
+my_footprints_library
+BNO055
+
+
+0
+10
+10
+my_footprints_library
+MA10EB045
+
+
+0
+2
+2
