@@ -6,7 +6,7 @@ class IMUModel :
     # 仮想IMUモデル（ヨー角の取得）
 
     def __init__(self, noise_std=0.0) :
-        # noise_std: ガウシアンノイズの標準偏差 [rad]
+        # noise_std: ガウシアンノイズの標準偏差 [deg]
         self.noise_std = noise_std
         self.offset = 0.0
 
@@ -20,6 +20,6 @@ class IMUModel :
         if self.noise_std > 0 :
             val += random.gauss(0, self.noise_std)
         
-        # 角度を[-π, π]に正規化
-        val = math.atan2(math.sin(val), math.cos(val))
+        # 角度を[-180, 180]に正規化
+        val = (val + 180.0) % 360.0 - 180.0
         return val

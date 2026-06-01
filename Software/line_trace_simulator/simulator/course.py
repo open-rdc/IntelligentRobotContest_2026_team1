@@ -85,6 +85,44 @@ class CourseModel :
 
         return total / count if count > 0 else 1.0
 
+    def get_brightness_kernel(self, cx, cy, kernel, px_r) :
+        # カーネルを用いた加重平均で明度を取得する
+        px_cx = int(cx / self.scale)
+        px_cy = int(cy / self.scale)
+
+        if HAS_NUMPY and isinstance(kernel, np.ndarray) and self._pixel_array is not None :
+            x_min = px_cx - px_r
+            x_max = px_cx + px_r + 1
+            y_min = px_cy - px_r
+            y_max = px_cy + px_r + 1
+
+            if x_min >= 0 and x_max <= self._width and y_min >= 0 and y_max <= self._height :
+                region = self._pixel_array[x_min:x_max, y_min:y_max]
+                return float(np.sum(region * kernel))
+
+        total_val = 0.0
+        
+        for dx in range(-px_r, px_r + 1) :
+            for dy in range(-px_r, px_r + 1) :
+                w = kernel[dx + px_r][dy + px_r]
+                if w <= 0.0 :
+                    continue
+                
+                px = px_cx + dx
+                py = px_cy + dy
+                
+                if px < 0 or px >= self._width or py < 0 or py >= self._height :
+                    val = 1.0
+                elif self._pixel_array is not None :
+                    val = float(self._pixel_array[px, py])
+                else :
+                    r, g, b, _ = self.surface.get_at((px, py))
+                    val = (r * 0.299 + g * 0.587 + b * 0.114) / 255.0
+                    
+                total_val += val * w
+
+        return total_val
+
     @property
     def width(self) :
         # コースの幅 [mm]

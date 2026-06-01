@@ -18,6 +18,7 @@ class RobotAPI :
         self._time_cond = threading.Condition(self._lock)
         self._quit = False
         self._resetting = False
+        self.target_time = 0.0
 
     def _check_abort(self) :
         if self._quit or self._resetting :
@@ -25,7 +26,7 @@ class RobotAPI :
 
     # ===== ユーザー側API =====
 
-    def move_motor(self, left, right) :
+    def start_motor(self, left, right) :
         # モータ出力を設定する（-1.0 ～ 1.0）
         with self._lock :
             self._check_abort()
@@ -36,8 +37,8 @@ class RobotAPI :
         # 指定秒数（シミュレーション時間）待機する
         with self._lock :
             self._check_abort()
-            target_time = self.sim_time + seconds
-            while self.sim_time < target_time :
+            self.target_time = self.sim_time + seconds
+            while self.sim_time < self.target_time :
                 self._time_cond.wait()
                 self._check_abort()
 
@@ -62,7 +63,7 @@ class RobotAPI :
 
     def get_imu_yaw(self) :
         # IMUのヨー角（姿勢角）を取得する
-        import math
         with self._lock :
+            self._check_abort()
             yaw = self.imu_yaw - self._imu_offset
-            return math.atan2(math.sin(yaw), math.cos(yaw))
+            return (yaw + 180.0) % 360.0 - 180.0

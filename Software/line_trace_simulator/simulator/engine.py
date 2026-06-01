@@ -1,7 +1,5 @@
 import pygame
-import sys
-import os
-import inspect
+import math
 import threading
 from simulator.course import CourseModel
 from simulator.robot import RobotModel
@@ -51,6 +49,7 @@ class Simulator :
         for key, val in kwargs.items() :
             if hasattr(self.line_sensor, key) :
                 setattr(self.line_sensor, key, val)
+        self.line_sensor._kernel = None
 
     def set_imu_params(self, **kwargs) :
         for key, val in kwargs.items() :
@@ -89,6 +88,10 @@ class Simulator :
             
         # 初回のセンサ値読み取り
         self._read_sensors()
+        with self.api._lock :
+            self.api.line_sensors = self._line_sensor_values
+            self.api.imu_yaw = self.imu.read_yaw(self.robot.theta)
+
         print('[Simulator] Reset')
         
         # ユーザースレッドを再スタート
@@ -170,13 +173,15 @@ class Simulator :
         # IMUとセンサの初期化
         self.imu.reset(self.robot.theta)
         self._read_sensors()
+        with self.api._lock :
+            self.api.line_sensors = self._line_sensor_values
+            self.api.imu_yaw = self.imu.read_yaw(self.robot.theta)
 
         print(f'[Simulator] Course: {self.course.pixel_width}x{self.course.pixel_height} px')
-        print(f'[Simulator] Robot pose: ({self.robot.x:.1f}, {self.robot.y:.1f}, {self.robot.theta:.3f} rad)')
+        print(f'[Simulator] Robot pose: ({self.robot.x:.1f}, {self.robot.y:.1f}, {self.robot.theta:.1f} deg)')
         print(f'[Simulator] Sensor values: {[f"{v:.2f}" for v in self._line_sensor_values]}')
         
-        if self._start_user_thread() :
-            print('[Simulator] Running in MICROCONTROLLER mode')
+        self._start_user_thread()
 
         if auto_start :
             self._running = True
@@ -194,6 +199,11 @@ class Simulator :
 
                 for _ in range(steps) :
                     self._step_simulation()
+                    
+                    # ユーザースレッドが目覚めるべき時間に達したら、明示的にGILを解放して実行権を譲る
+                    if self._sim_time >= self.api.target_time :
+                        import time
+                        time.sleep(0.001)
 
                 frame_count += 1
                 if frame_count % 60 == 0 :
@@ -201,7 +211,7 @@ class Simulator :
                           f'pos=({self.robot.x:.1f},{self.robot.y:.1f})  '
                           f'v={self.robot.v:.1f}  '
                           f'line={[f"{v:.2f}" for v in self._line_sensor_values]}  '
-                          f'imu={self.imu.read_yaw(self.robot.theta):.2f}')
+                          f'imu={math.degrees(self.imu.read_yaw(self.robot.theta)):.1f} deg')
 
             # 描画
             imu_yaw = self.api.get_imu_yaw()

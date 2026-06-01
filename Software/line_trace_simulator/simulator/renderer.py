@@ -164,9 +164,9 @@ class Renderer :
 
     def _draw_robot(self, robot, line_sensor_model, line_sensor_values) :
         scx, scy = self._to_screen(robot.x, robot.y)
-        theta = robot.theta
-        cos_t = math.cos(theta)
-        sin_t = math.sin(theta)
+        theta_rad = math.radians(robot.theta)
+        cos_t = math.cos(theta_rad)
+        sin_t = math.sin(theta_rad)
 
         body_w = self._to_screen_len(robot.track_width * 0.7)
         body_h = self._to_screen_len(robot.track_width * 0.9)
@@ -263,10 +263,10 @@ class Renderer :
 
         y = self._draw_section(x, y, 'ROBOT', [
             ('Pos', f'({robot.x:.1f}, {robot.y:.1f})'),
-            ('Angle', f'{math.degrees(robot.theta):.1f} deg'),
-            ('IMU Yaw', f'{math.degrees(imu_yaw):.1f} deg'),
+            ('Angle', f'{robot.theta:.1f} deg'),
+            ('IMU Yaw', f'{imu_yaw:.1f} deg'),
             ('Speed', f'{robot.v:.1f} mm/s'),
-            ('Omega', f'{robot.omega:.2f} rad/s'),
+            ('Omega', f'{robot.omega:.1f} deg/s'),
             ('Mult', f'{speed_mult:.1f}x'),
         ], key_value=True)
 

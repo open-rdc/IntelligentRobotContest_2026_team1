@@ -5,8 +5,8 @@ class RobotModel :
     # 対向二輪ロボットのキネマティクスモデル
     # モータの一次遅れ・不感帯にも対応
 
-    def __init__(self, track_width=160.0, wheel_radius=25.0, max_motor_speed=10.0,
-                 motor_tau=0.05, motor_deadzone=0.05) :
+    def __init__(self, track_width=190.0, wheel_radius=35.0, max_motor_speed=10.0,
+                 motor_tau=0.1, motor_deadzone=0.05) :
         # 200mm角・2kgロボットを想定したデフォルト値
         # track_width: 車輪間距離(トレッド) [mm]（車体幅200mmに対し左右20mmずつ内側）
         # wheel_radius: 車輪半径 [mm]（φ50mmホイール）
@@ -24,9 +24,9 @@ class RobotModel :
         # 状態変数
         self.x = 0.0       # 位置X [mm]
         self.y = 0.0       # 位置Y [mm]
-        self.theta = 0.0   # 向き [rad] (X+が0、反時計回り正)
+        self.theta = 0.0   # 向き [deg] (X+が0、反時計回り正)
         self.v = 0.0       # 並進速度 [mm/s]
-        self.omega = 0.0   # 旋回角速度 [rad/s]
+        self.omega = 0.0   # 旋回角速度 [deg/s]
 
         # モータの実際の角速度（一次遅れ適用後の値）
         self._motor_actual_l = 0.0
@@ -83,13 +83,15 @@ class RobotModel :
         v_r = self.wheel_radius * self._motor_actual_r
 
         self.v = (v_r + v_l) / 2.0
-        self.omega = (v_r - v_l) / self.track_width
+        omega_rad = (v_r - v_l) / self.track_width
+        self.omega = math.degrees(omega_rad)
 
-        self.x += self.v * math.cos(self.theta) * dt
-        self.y += self.v * math.sin(self.theta) * dt
+        theta_rad = math.radians(self.theta)
+        self.x += self.v * math.cos(theta_rad) * dt
+        self.y += self.v * math.sin(theta_rad) * dt
         self.theta += self.omega * dt
 
-        self.theta = math.atan2(math.sin(self.theta), math.cos(self.theta))
+        self.theta = (self.theta + 180.0) % 360.0 - 180.0
 
     @property
     def state(self) :
@@ -104,8 +106,9 @@ class RobotModel :
     @property
     def wheel_positions(self) :
         # 左右車輪のワールド座標を返す（描画用）
-        dx = (self.track_width / 2.0) * math.sin(self.theta)
-        dy = (self.track_width / 2.0) * math.cos(self.theta)
+        theta_rad = math.radians(self.theta)
+        dx = (self.track_width / 2.0) * math.sin(theta_rad)
+        dy = (self.track_width / 2.0) * math.cos(theta_rad)
         
         left_pos = (self.x + dx, self.y - dy)
         right_pos = (self.x - dx, self.y + dy)
