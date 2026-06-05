@@ -178,7 +178,7 @@ class Simulator :
             self.api.imu_yaw = self.imu.read_yaw(self.robot.theta)
 
         print(f'[Simulator] Course: {self.course.pixel_width}x{self.course.pixel_height} px')
-        print(f'[Simulator] Robot pose: ({self.robot.x:.1f}, {self.robot.y:.1f}, {self.robot.theta:.1f} deg)')
+        print(f'[Simulator] Robot pose: ({self.robot.x:.1f}, {self.robot.y:.1f}, {int(self.robot.theta)} deg)')
         print(f'[Simulator] Sensor values: {[f"{v:.2f}" for v in self._line_sensor_values]}')
         
         self._start_user_thread()
@@ -211,7 +211,7 @@ class Simulator :
                           f'pos=({self.robot.x:.1f},{self.robot.y:.1f})  '
                           f'v={self.robot.v:.1f}  '
                           f'line={[f"{v:.2f}" for v in self._line_sensor_values]}  '
-                          f'imu={math.degrees(self.imu.read_yaw(self.robot.theta)):.1f} deg')
+                          f'imu={int(self.imu.read_yaw(self.robot.theta))} deg')
 
             # 描画
             imu_yaw = self.api.get_imu_yaw()

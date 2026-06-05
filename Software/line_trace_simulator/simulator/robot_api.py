@@ -1,6 +1,5 @@
 import threading
 
-
 class RobotAPI :
     # 別スレッドで動くユーザープログラムとシミュレータを繋ぐAPI
 

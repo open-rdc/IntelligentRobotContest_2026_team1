@@ -1,6 +1,5 @@
 import math
 
-
 class RobotModel :
     # 対向二輪ロボットのキネマティクスモデル
     # モータの一次遅れ・不感帯にも対応

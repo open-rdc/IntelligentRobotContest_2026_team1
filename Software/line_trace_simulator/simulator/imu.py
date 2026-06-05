@@ -1,6 +1,4 @@
 import random
-import math
-
 
 class IMUModel :
     # 仮想IMUモデル（ヨー角の取得）
