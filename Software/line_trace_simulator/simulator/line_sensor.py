@@ -4,10 +4,8 @@ import random
 class LineSensorModel :
     # ラインセンサの配置と読み取りを管理する
 
-    def __init__(self, count=4, forward_offset=72.0,
-                 offsets=[-21/2-9.6, -21/2, 21/2, 21/2+9.6], fov_radius=2.6, noise_std=0.0,
-                 sensor_height=5.0, half_angle=30.0) :
-        # count: センサ数（offsetsが未指定の場合に使用）
+    def __init__(self, forward_offset=72.0, offsets=[-21/2-9.6, -21/2, 21/2, 21/2+9.6],
+                 fov_radius=2.6, noise_std=0.0, sensor_height=5.0, half_angle=30.0) :
         # forward_offset: ロボット中心からセンサ列までの前方距離 [mm]
         # offsets: 各センサの横方向オフセットのリスト [mm]（左が負、右が正）
         #          例: [-21/2-9.6, -21/2, 21/2, 21/2+9.6] → 不等間隔4センサ

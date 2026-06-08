@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(rp2040_test rp2040_test.c bno055.c line_sensor.c camera.c)
+add_executable(rp2040_test rp2040_test.c bno055.c line_sensor.c color_sensor.c camera.c)
 
 pico_set_program_name(rp2040_test "rp2040_test")
 pico_set_program_version(rp2040_test "0.1")

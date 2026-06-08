@@ -39,7 +39,7 @@ UnitV (M5Stack UnitV / K210) 上で動作するボール検出プログラム。
 - **検出方式**: find_blobs → ROI絞り込み → find_circles (ハフ変換)
 - **対応色**: 赤・黄・青 (LAB色空間の閾値で設定)
 - **出力**: UART1 (TX=Pin35, RX=Pin34, 115200bps) で検出結果を送信
-- **フォーマット**: `色名: cx=X cy=Y r=R mag=M\n`
+- **フォーマット**: `色ID(1:red, 2:yellow, 3:blue) cx cy r mag\n` (スペース区切りの整数値)
 
 ## rp2040_test
 

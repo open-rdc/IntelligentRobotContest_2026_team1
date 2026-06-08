@@ -23,7 +23,7 @@ void camera_poll(void) {
     if (c == '\n' || c == '\r') {
       if (uart_buf_idx > 0) {
         uart_buf[uart_buf_idx] = '\0';
-        
+
         g_sensor_data.camera_value_count = 0;
         char *p = uart_buf;
         char *end;

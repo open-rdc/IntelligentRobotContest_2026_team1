@@ -16,6 +16,7 @@ typedef struct {
   bool bno_error;
 
   uint16_t line_sensor[4];
+  uint16_t color_sensor[3];
 } SensorData;
 
 extern SensorData g_sensor_data;

@@ -189,10 +189,13 @@ while True :
 
         # シリアル出力およびUART送信
         if SHOW_PRINT :
+            color_map = {'red': 1, 'yellow': 2, 'blue': 3}
+            color_id = color_map.get(color_name, 0)
             for r in results :
                 # 送信用文字列を生成 (末尾に改行コード付与)
-                msg = '%s: cx=%d cy=%d r=%d mag=%d\n' % (
-                    color_name, r['cx'], r['cy'], r['radius'], r['magnitude'])
+                # 色ID(1:red, 2:yellow, 3:blue) cx cy r mag のスペース区切り
+                msg = '%d %d %d %d %d\n' % (
+                    color_id, r['cx'], r['cy'], r['radius'], r['magnitude'])
                 print(msg.strip())  # REPLへの出力用
                 uart.write(msg)     # UART経由での送信
 

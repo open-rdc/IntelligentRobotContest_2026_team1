@@ -2,6 +2,7 @@
 #include "line_sensor.h"
 #include "sensor_data.h"
 #include "camera.h"
+#include "color_sensor.h"
 #include "hardware/i2c.h"
 #include "pico/stdlib.h"
 #include <stdio.h>
@@ -20,6 +21,7 @@ int main() {
   // サブモジュールの初期化
   camera_init();
   line_sensor_init();
+  color_sensor_init();
 
   // I2C1 初期化 (BNO055用)
   i2c_init(i2c1, I2C_FREQ);
@@ -29,7 +31,7 @@ int main() {
   gpio_pull_up(I2C_SCL_PIN);
 
   sleep_ms(2000);
-  printf("=== RP2040 テスト (Camera + BNO055 + Line) ===\n");
+  printf("=== RP2040 テスト (Camera + BNO055 + Line + Color) ===\n");
 
   bool bno_ok = bno055_init(i2c1);
   if (!bno_ok) {
@@ -60,14 +62,15 @@ int main() {
         }
       }
 
-      // ライントレースセンサ データ更新
+      // ライントレースセンサ・カラーセンサ データ更新
       line_sensor_read_all(g_sensor_data.line_sensor);
+      color_sensor_read_all(g_sensor_data.color_sensor);
     }
 
     // まとめて出力 (保持しているデータを参照)
     if (now - last_print_time >= SENSOR_INTERVAL_MS) {
       last_print_time = now;
-/*
+//*
       // 1. UART Data
       if (g_sensor_data.camera_updated) {
         printf("Cam:[");
@@ -104,11 +107,17 @@ int main() {
           printf(" ");
         }
       }
-      printf("]\n");
-*/
-      for (int i = 0; i < 4; i++) {
-        printf(">Sensor%d:%d\n", i, g_sensor_data.line_sensor[i]);
-      }
+      printf("] ");
+
+      // 4. Color Sensor Data
+      printf("Color:[B=%4d G=%4d R=%4d]\n",
+             g_sensor_data.color_sensor[0],
+             g_sensor_data.color_sensor[1],
+             g_sensor_data.color_sensor[2]);
+//*/
+      // for (int i = 0; i < 4; i++) {
+      //   printf(">Sensor%d:%d\n", i, g_sensor_data.line_sensor[i]);
+      // }
     }
 
     sleep_ms(2);

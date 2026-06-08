@@ -64,7 +64,7 @@ class Renderer :
         self._course_scaled = None
 
         win_w = self.canvas_w + self.panel_width
-        win_h = max(self.canvas_h, 520)
+        win_h = max(self.canvas_h, 750)
         self.screen = pygame.display.set_mode((win_w, win_h))
         pygame.display.set_caption('Line Trace Simulator')
 
@@ -120,9 +120,6 @@ class Renderer :
 
         # 軌跡描画
         self._draw_trail()
-
-        # センサFOV（半透明円）
-        self._draw_sensor_fov(robot, line_sensor_model, line_sensor_values)
 
         # ロボット描画
         self._draw_robot(robot, line_sensor_model, line_sensor_values)
@@ -283,6 +280,135 @@ class Renderer :
         y = self._draw_divider(x - 4, y, self.panel_width - 20)
 
         y = self._draw_sensor_bars(x, y, line_sensor_model, line_sensor_values)
+
+        y = self._draw_divider(x - 4, y, self.panel_width - 20)
+
+        y = self._draw_magnifier(x, y, robot, line_sensor_model, line_sensor_values)
+
+    def _draw_magnifier(self, x, y, robot, line_sensor_model, line_sensor_values) :
+        ts = self.font_title.render('MAGNIFIER', True, COLOR_TEXT_ACCENT)
+        self.screen.blit(ts, (x, y))
+        y += 20
+
+        disp_size = 180
+        crop_size = 90
+        margin_crop = int(crop_size * 1.5)
+        
+        scx, scy = self._to_screen(robot.x, robot.y)
+        rect_x = int(scx - margin_crop / 2)
+        rect_y = int(scy - margin_crop / 2)
+        
+        try:
+            # 画面外の余白を持たせるため、一時Surfaceに描画
+            src_surf = pygame.Surface((margin_crop, margin_crop))
+            src_surf.fill(COLOR_BG)
+            
+            blit_x, blit_y = 0, 0
+            src_x, src_y = rect_x, rect_y
+            src_w, src_h = margin_crop, margin_crop
+            
+            if src_x < 0:
+                blit_x = -src_x
+                src_w += src_x
+                src_x = 0
+            if src_y < 0:
+                blit_y = -src_y
+                src_h += src_y
+                src_y = 0
+            if src_x + src_w > self.canvas_w:
+                src_w = self.canvas_w - src_x
+            if src_y + src_h > self.canvas_h:
+                src_h = self.canvas_h - src_y
+                
+            if src_w > 0 and src_h > 0:
+                src_surf.blit(self._course_scaled, (blit_x, blit_y), (src_x, src_y, src_w, src_h))
+            
+            # 回転: ロボット前方が上を向くように背景を逆回転
+            angle = robot.theta + 90
+            rotated_surf = pygame.transform.rotate(src_surf, angle)
+            
+            # 中央のクロップ
+            rcx, rcy = rotated_surf.get_width() / 2, rotated_surf.get_height() / 2
+            final_crop = rotated_surf.subsurface(pygame.Rect(int(rcx - crop_size/2), int(rcy - crop_size/2), crop_size, crop_size))
+            
+            # 拡大
+            mag_bg = pygame.transform.scale(final_crop, (disp_size, disp_size))
+            
+            # ロボットとセンサの描画
+            zoom = disp_size / crop_size
+            cx, cy = disp_size / 2, disp_size / 2
+            
+            def to_mag_len(length):
+                return self._to_screen_len(length) * zoom
+            def local_to_mag(dx, dy):
+                # dx: 右方, dy: 前方 -> Pygame(X:右, Y:下)
+                return (cx + dx, cy - dy)
+            
+            # 車体サイズ
+            body_w = to_mag_len(robot.track_width * 0.7 / 2) # X（右）方向
+            body_h = to_mag_len(robot.track_width * 0.9 / 2) # Y（前）方向
+            
+            # 輪郭描画 (四隅: 右前、左前、左後、右後)
+            corners = [
+                local_to_mag(body_w, body_h),
+                local_to_mag(-body_w, body_h),
+                local_to_mag(-body_w, -body_h),
+                local_to_mag(body_w, -body_h)
+            ]
+            pygame.draw.polygon(mag_bg, COLOR_ROBOT_OUTLINE, corners, 2)
+            
+            # 車輪
+            ww = to_mag_len(10)
+            wh = to_mag_len(robot.wheel_radius * 1.6)
+            tw_half = to_mag_len(robot.track_width / 2)
+            for wx in [tw_half, -tw_half]:
+                wc = [
+                    local_to_mag(wx + ww/2, wh/2),
+                    local_to_mag(wx - ww/2, wh/2),
+                    local_to_mag(wx - ww/2, -wh/2),
+                    local_to_mag(wx + ww/2, -wh/2)
+                ]
+                pygame.draw.polygon(mag_bg, COLOR_WHEEL, wc)
+                pygame.draw.polygon(mag_bg, COLOR_WHEEL_OUTLINE, wc, 1)
+                
+            # 前方マーカー
+            a_tip = local_to_mag(0, body_h + body_h * 0.3)
+            a_left = local_to_mag(-body_w * 0.3, body_h)
+            a_right = local_to_mag(body_w * 0.3, body_h)
+            pygame.draw.polygon(mag_bg, COLOR_ROBOT_OUTLINE, [a_tip, a_left, a_right], 1)
+            
+            # センサFOV
+            if line_sensor_values:
+                fov_r = max(2, int(to_mag_len(line_sensor_model.fov_radius)))
+                fwd_off = to_mag_len(line_sensor_model.forward_offset)
+                
+                fov_surf = pygame.Surface((fov_r * 2, fov_r * 2), pygame.SRCALPHA)
+                
+                for i, d in enumerate(line_sensor_model._offsets):
+                    dx = to_mag_len(d)
+                    sp = local_to_mag(dx, fwd_off)
+                    
+                    c = sensor_color(line_sensor_values[i])
+                    
+                    fov_surf.fill((0, 0, 0, 0))
+                    pygame.draw.circle(fov_surf, (*c, 80), (fov_r, fov_r), fov_r)
+                    mag_bg.blit(fov_surf, (sp[0] - fov_r, sp[1] - fov_r))
+                    
+                    pygame.draw.circle(mag_bg, c, (int(sp[0]), int(sp[1])), 3)
+                    pygame.draw.circle(mag_bg, (255, 255, 255), (int(sp[0]), int(sp[1])), 3, 1)
+
+            # 描画
+            bx = x + (self.panel_width - 28 - disp_size) // 2
+            pygame.draw.rect(self.screen, COLOR_BAR_BORDER, pygame.Rect(bx-1, y-1, disp_size+2, disp_size+2), 1)
+            self.screen.blit(mag_bg, (bx, y))
+            
+            y += disp_size + 10
+        except Exception as e:
+            err_text = self.font_small.render('Error rendering magnifier', True, COLOR_TEXT_DIM)
+            self.screen.blit(err_text, (x + 10, y + 10))
+            y += 30
+
+        return y
 
     def _draw_section(self, x, y, title, items, key_value=False) :
         ts = self.font_title.render(title, True, COLOR_TEXT_ACCENT)

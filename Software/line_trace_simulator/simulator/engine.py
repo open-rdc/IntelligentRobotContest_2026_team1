@@ -208,7 +208,7 @@ class Simulator :
                 frame_count += 1
                 if frame_count % 60 == 0 :
                     print(f'[Sim] t={self._sim_time:.2f}s  '
-                          f'pos=({self.robot.x:.1f},{self.robot.y:.1f})  '
+                          f'pos=({self.robot.x:.1f}, {self.robot.y:.1f})  '
                           f'v={self.robot.v:.1f}  '
                           f'line={[f"{v:.2f}" for v in self._line_sensor_values]}  '
                           f'imu={int(self.imu.read_yaw(self.robot.theta))} deg')
