@@ -11,8 +11,8 @@ def main_control(robot) :
     while True :
         line = robot.get_line_sensors()
         error = line[1] - line[2]
-        base_speed = 0.5
-        kp = 0.5
+        base_speed = 0.6
+        kp = 1.0
         left = base_speed - kp * error
         right = base_speed + kp * error
 
@@ -21,19 +21,19 @@ def main_control(robot) :
             print('corss: ', cross_count)
             robot.start_motor(0, 0)
             robot.wait(0.5)
-            move_motor(robot, 0.1, 0.5)
+            move_motor(robot, 0.1, 0.6)
 
             if cross_count == 2 :
                 turn_abs(robot, 180)
                 robot.wait(2.0)
                 turn_abs(robot, 0)
             if cross_count == 6 :
-                move_motor(robot, 0.5, -0.5)
+                move_motor(robot, 0.5, -0.6)
                 turn_abs(robot, 0)
             if cross_count == 8 :
                 drop_to_blue(robot)
             elif cross_count == 11 :
-                move_motor(robot, 2.0, 0.5)
+                move_motor(robot, 2.0, 0.6)
                 break
 
         robot.start_motor(left, right)
@@ -57,9 +57,9 @@ def turn_abs(robot, target_angle) :
     while abs(error := robot.get_imu_yaw() - target_angle) > 3 :
         error = (error + 180) % 360 - 180
         if error > 0 :
-            robot.start_motor(0.3, -0.3)
+            robot.start_motor(0.6, -0.6)
         else :
-            robot.start_motor(-0.3, 0.3)
+            robot.start_motor(-0.6, 0.6)
         robot.wait(0.01)
     robot.start_motor(0,0)
 
@@ -70,7 +70,7 @@ def move_motor(robot, time, l, r=None) :
     robot.wait(time)
     robot.start_motor(0, 0)
 
-def move_to_cross(robot, power=0.5) :
+def move_to_cross(robot, power=0.6) :
     line = robot.get_line_sensors()
     while not (line[0] < 0.2 and line[3] < 0.2) :
         robot.start_motor(power, power)

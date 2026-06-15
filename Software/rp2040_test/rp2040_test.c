@@ -1,10 +1,12 @@
 #include "bno055.h"
-#include "line_sensor.h"
-#include "sensor_data.h"
 #include "camera.h"
 #include "color_sensor.h"
 #include "hardware/i2c.h"
+#include "line_sensor.h"
+#include "motor.h"
 #include "pico/stdlib.h"
+#include "sensor_data.h"
+#include "servo.h"
 #include <stdio.h>
 
 SensorData g_sensor_data = {0};
@@ -22,7 +24,10 @@ int main() {
   camera_init();
   line_sensor_init();
   color_sensor_init();
+  servo_init();
+  motor_init();
 
+  sleep_ms(2000);
   // I2C1 初期化 (BNO055用)
   i2c_init(i2c1, I2C_FREQ);
   gpio_set_function(I2C_SDA_PIN, GPIO_FUNC_I2C);
@@ -41,6 +46,9 @@ int main() {
 
   uint32_t last_sensor_time = 0;
   uint32_t last_print_time = 0;
+
+  motor_right_set_speed(70.0f);
+  motor_left_set_speed(70.0f);
 
   while (true) {
     uint32_t now = to_ms_since_boot(get_absolute_time());
@@ -70,13 +78,14 @@ int main() {
     // まとめて出力 (保持しているデータを参照)
     if (now - last_print_time >= SENSOR_INTERVAL_MS) {
       last_print_time = now;
-//*
+      /*
       // 1. UART Data
       if (g_sensor_data.camera_updated) {
         printf("Cam:[");
         for (int i = 0; i < g_sensor_data.camera_value_count; i++) {
           printf("%d", g_sensor_data.camera_values[i]);
-          if (i < g_sensor_data.camera_value_count - 1) printf(" ");
+          if (i < g_sensor_data.camera_value_count - 1)
+            printf(" ");
         }
         printf("] ");
         g_sensor_data.camera_updated = false;
@@ -110,11 +119,9 @@ int main() {
       printf("] ");
 
       // 4. Color Sensor Data
-      printf("Color:[B=%4d G=%4d R=%4d]\n",
-             g_sensor_data.color_sensor[0],
-             g_sensor_data.color_sensor[1],
-             g_sensor_data.color_sensor[2]);
-//*/
+      printf("Color:[B=%4d G=%4d R=%4d]\n", g_sensor_data.color_sensor[0],
+             g_sensor_data.color_sensor[1], g_sensor_data.color_sensor[2]);
+      //*/
       // for (int i = 0; i < 4; i++) {
       //   printf(">Sensor%d:%d\n", i, g_sensor_data.line_sensor[i]);
       // }

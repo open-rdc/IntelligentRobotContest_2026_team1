@@ -179,7 +179,8 @@ class Simulator :
 
         print(f'[Simulator] Course: {self.course.pixel_width}x{self.course.pixel_height} px')
         print(f'[Simulator] Robot pose: ({self.robot.x:.1f}, {self.robot.y:.1f}, {int(self.robot.theta)} deg)')
-        print(f'[Simulator] Sensor values: {[f"{v:.2f}" for v in self._line_sensor_values]}')
+        lines_str = '[' + ', '.join(f'{v:.2f}' for v in self._line_sensor_values) + ']'
+        print(f'[Simulator] Sensor values: {lines_str}')
         
         self._start_user_thread()
 
@@ -207,11 +208,16 @@ class Simulator :
 
                 frame_count += 1
                 if frame_count % 60 == 0 :
+                    lines_str = '[' + ', '.join(f'{v:.2f}' for v in self._line_sensor_values) + ']'
+                    with self.api._lock :
+                        ml = self.api.motor_l
+                        mr = self.api.motor_r
                     print(f'[Sim] t={self._sim_time:.2f}s  '
-                          f'pos=({self.robot.x:.1f}, {self.robot.y:.1f})  '
-                          f'v={self.robot.v:.1f}  '
-                          f'line={[f"{v:.2f}" for v in self._line_sensor_values]}  '
-                          f'imu={int(self.imu.read_yaw(self.robot.theta))} deg')
+                        #   f'pos=({self.robot.x:.1f}, {self.robot.y:.1f})  '
+                        #   f'v={self.robot.v:.1f}  '
+                          f'line={lines_str}  '
+                          f'imu={int(self.imu.read_yaw(self.robot.theta))} deg  '
+                          f'motor=({ml:.2f}, {mr:.2f})')
 
             # 描画
             imu_yaw = self.api.get_imu_yaw()

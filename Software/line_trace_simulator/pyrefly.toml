@@ -1,0 +1,7 @@
+# Pyrefly 設定ファイル
+# プロジェクトルートからの検索パスを設定し、偽陽性エラーを抑制する
+
+search_path = ["."]
+
+# 生成コード内のエラーを無視する
+ignore_errors_in_generated_code = true

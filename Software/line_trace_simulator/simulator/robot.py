@@ -5,7 +5,7 @@ class RobotModel :
     # モータの一次遅れ・不感帯にも対応
 
     def __init__(self, track_width=190.0, wheel_radius=35.0, max_motor_speed=10.0,
-                 motor_tau=0.1, motor_deadzone=0.05) :
+                 motor_tau=0.1, motor_deadzone=0.5) :
         # 200mm角・2kgロボットを想定したデフォルト値
         # track_width: 車輪間距離(トレッド) [mm]（車体幅200mmに対し左右20mmずつ内側）
         # wheel_radius: 車輪半径 [mm]（φ50mmホイール）

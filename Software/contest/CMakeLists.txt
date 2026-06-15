@@ -28,29 +28,40 @@ set(PICO_BOARD pico CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(rp2040_test C CXX ASM)
+project(contest C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(rp2040_test rp2040_test.c bno055.c line_sensor.c color_sensor.c motor.c servo.c camera.c)
+add_executable(contest
+    src/main.c
+    src/sensor_manager.c
+    components/sensors/bno055.c
+    components/sensors/line_sensor.c
+    components/sensors/color_sensor.c
+    components/sensors/camera.c
+    components/actuators/motor.c
+    components/actuators/servo.c
+)
 
-pico_set_program_name(rp2040_test "rp2040_test")
-pico_set_program_version(rp2040_test "0.1")
+pico_set_program_name(contest "contest")
+pico_set_program_version(contest "0.1")
 
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(rp2040_test 1)
-pico_enable_stdio_usb(rp2040_test 1)
+pico_enable_stdio_uart(contest 1)
+pico_enable_stdio_usb(contest 1)
 
 # ライブラリのリンク (pico_stdlibにuart/timer等は含まれる)
-target_link_libraries(rp2040_test pico_stdlib hardware_i2c hardware_adc hardware_pwm)
+target_link_libraries(contest pico_stdlib hardware_i2c hardware_adc hardware_pwm)
 
-target_include_directories(rp2040_test PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}
+target_include_directories(contest PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}/src
+        ${CMAKE_CURRENT_LIST_DIR}/components/sensors
+        ${CMAKE_CURRENT_LIST_DIR}/components/actuators
 )
 
-pico_add_extra_outputs(rp2040_test)
+pico_add_extra_outputs(contest)
 
