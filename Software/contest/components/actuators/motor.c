@@ -1,8 +1,8 @@
 #include "motor.h"
 #include "hardware/pwm.h"
 
-#define MOTOR_RIGHT_A 4
-#define MOTOR_RIGHT_B 5
+#define MOTOR_RIGHT_A 5
+#define MOTOR_RIGHT_B 4
 #define MOTOR_LEFT_A 8
 #define MOTOR_LEFT_B 9
 
@@ -40,7 +40,7 @@ void motor_init(void) {
 }
 
 // 内部関数：指定したピンペアに対して-100~100の範囲でPWMを出力
-static void set_motor_pwm(uint pin_a, uint pin_b, float speed) {
+void set_motor_pwm(uint pin_a, uint pin_b, float speed) {
   uint slice = pwm_gpio_to_slice_num(pin_a);
   uint chan_a = pwm_gpio_to_channel(pin_a);
   uint chan_b = pwm_gpio_to_channel(pin_b);
@@ -49,7 +49,7 @@ static void set_motor_pwm(uint pin_a, uint pin_b, float speed) {
   if (speed < -100.0f) speed = -100.0f;
 
   float abs_speed = speed >= 0 ? speed : -speed;
-  uint16_t duty = (uint16_t)(PWM_WRAP * (abs_speed / 100.0f));
+  uint16_t duty = (uint16_t)((PWM_WRAP - 1) * (abs_speed / 100.0f));
 
   if (speed > 0) {
     // 正転
@@ -66,15 +66,7 @@ static void set_motor_pwm(uint pin_a, uint pin_b, float speed) {
   }
 }
 
-void motor_right_set_speed(float speed) {
-  set_motor_pwm(MOTOR_RIGHT_A, MOTOR_RIGHT_B, -speed);
-}
-
-void motor_left_set_speed(float speed) {
-  set_motor_pwm(MOTOR_LEFT_A, MOTOR_LEFT_B, speed);
-}
-
 void motor_set_speeds(float left_speed, float right_speed) {
-  motor_left_set_speed(left_speed);
-  motor_right_set_speed(right_speed);
+  set_motor_pwm(MOTOR_RIGHT_A, MOTOR_RIGHT_B, right_speed);
+  set_motor_pwm(MOTOR_LEFT_A, MOTOR_LEFT_B, left_speed);
 }

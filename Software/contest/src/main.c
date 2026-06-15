@@ -17,6 +17,7 @@ static const uint I2C_SDA_PIN = 6;
 static const uint I2C_SCL_PIN = 7;
 static const uint I2C_FREQ = 400000;
 static const uint SENSOR_INTERVAL_MS = 100;
+static const uint DEBUG_LED_PIN[4] = {12, 13, 14, 15};
 
 #include "sensor_manager.h"
 
@@ -38,6 +39,11 @@ int main() {
   gpio_pull_up(I2C_SDA_PIN);
   gpio_pull_up(I2C_SCL_PIN);
 
+  for (int i=0; i<4; i++) {
+    gpio_init(DEBUG_LED_PIN[i]);
+    gpio_set_dir(DEBUG_LED_PIN[i], GPIO_OUT);
+  }
+
   sleep_ms(2000);
   printf("=== Contest Main ===\n");
 
@@ -49,10 +55,6 @@ int main() {
 
   uint32_t last_sensor_time = 0;
   uint32_t last_print_time = 0;
-
-//   motor_set_speeds(-60, 60);
-//   sleep_ms(2000);
-//   motor_set_speeds(0, 0);
 
   while (true) {
     uint32_t now = to_ms_since_boot(get_absolute_time());
@@ -80,22 +82,31 @@ int main() {
     float error = (float)g_sensor_data.line_sensor[1] - (float)g_sensor_data.line_sensor[2];
     float error2 = (float)g_sensor_data.line_sensor[0] - (float)g_sensor_data.line_sensor[3];
 
-    // float base_speed = 70.0f;
-    // float kp = 0.5f;
+    float base_speed = 10.0f;
+    float kp = 0.2f;
+    float kp2 = 0.4f;
 
-    // float left_speed = base_speed + kp * error;
-    // float right_speed = base_speed - kp * error;
-    float left_speed = 70;
-    float right_speed = 70;
+    float left_speed = base_speed + (kp * error + kp2 * error2);
+    float right_speed = base_speed - (kp * error + kp2 * error2);
 
-    if (error2 > 20) {
-        right_speed = -70;
-    } else if (error < -20) {
-        left_speed = -70;
-    } else if (error > 20) {
-        right_speed = 0;
-    } else if (error < -20) {
-        left_speed = 0;
+    if (left_speed > 0) {
+        left_speed += 50;
+    } else if (left_speed < 0) {
+        left_speed -= 50;
+    }
+    if (right_speed > 0) {
+        right_speed += 50;
+    } else if (right_speed < 0) {
+        right_speed -= 50;
+    }
+
+    if (g_sensor_data.line_sensor[0] < 30 && g_sensor_data.line_sensor[3] < 30) {
+        gpio_put(DEBUG_LED_PIN[0], 1);
+        motor_set_speeds(0, 0);
+        sleep_ms(500);
+        motor_set_speeds(60, 60);
+        sleep_ms(500);
+        gpio_put(DEBUG_LED_PIN[0], 0);
     }
 
     // モータに速度指令を送信
@@ -104,6 +115,6 @@ int main() {
     // printf("error: %3.f\n", error);
     // printf("motors: %3.f, %3.f\n", left_speed, right_speed);
 
-    sleep_ms(50);
+    sleep_ms(10);
   }
 }

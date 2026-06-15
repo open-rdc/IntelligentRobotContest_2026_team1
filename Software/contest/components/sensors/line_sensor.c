@@ -5,7 +5,7 @@ static const uint MUX_S0_PIN = 17;
 static const uint MUX_S1_PIN = 16;
 static const uint ADC_PIN = 26;
 
-static const uint MIN_VAL[4] = {1100, 820, 750, 750};
+static const uint MIN_VAL[4] = {1000, 650, 700, 700};
 static const uint MAX_VAL[4] = {3800, 3800, 3800, 3800};
 
 void line_sensor_init(void) {
