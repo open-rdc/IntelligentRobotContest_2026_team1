@@ -52,7 +52,7 @@ pico_enable_stdio_uart(contest 1)
 pico_enable_stdio_usb(contest 1)
 
 # ライブラリのリンク (pico_stdlibにuart/timer等は含まれる)
-target_link_libraries(contest pico_stdlib hardware_i2c hardware_adc hardware_pwm)
+target_link_libraries(contest pico_stdlib hardware_i2c hardware_adc hardware_pwm m)
 
 target_include_directories(contest PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/src

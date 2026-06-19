@@ -14,7 +14,7 @@ LINE_LOST_TH = 0.95  # ライン見失い判定しきい値
 LINE_FOUND_TH = 0.7
 TURN_TOLERANCE = 3.0  # 旋回完了判定角度 [deg]
 TURN_SPEED = 0.6
-DEAD_ZONE = 0.5
+DEAD_ZONE_COMPENSATION = 0.5
 
 
 # ===== ユーティリティ =====
@@ -41,13 +41,13 @@ def trace_step(robot, base_speed=0.1) :
     right_speed = base_speed + speed
     
     if left_speed > 0 :
-        left_speed += DEAD_ZONE
+        left_speed += DEAD_ZONE_COMPENSATION
     elif left_speed < 0 :
-        left_speed -= DEAD_ZONE
+        left_speed -= DEAD_ZONE_COMPENSATION
     if right_speed > 0 :
-        right_speed += DEAD_ZONE
+        right_speed += DEAD_ZONE_COMPENSATION
     elif right_speed < 0 :
-        right_speed -= DEAD_ZONE
+        right_speed -= DEAD_ZONE_COMPENSATION
         
     robot.start_motor(left_speed, right_speed)
     return line

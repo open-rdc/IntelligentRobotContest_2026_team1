@@ -24,11 +24,19 @@ void line_sensor_init(void) {
 void line_sensor_read_all(uint16_t out_values[4]) {
   // カラーセンサ等で別のADCチャンネルが選択されている可能性があるため、ここでADC0に切り替える
   adc_select_input(0);
-  
+
   for (int i = 0; i < 4; i++) {
     gpio_put(MUX_S0_PIN, i & 0x01);
     gpio_put(MUX_S1_PIN, (i >> 1) & 0x01);
     sleep_us(10);
-    out_values[i] = (adc_read() - MIN_VAL[i]) * 100 / (MAX_VAL[i] - MIN_VAL[i]);
+
+    uint16_t raw_val = adc_read();
+    if (raw_val < MIN_VAL[i]) {
+      out_values[i] = 0;
+    } else if (raw_val > MAX_VAL[i]) {
+      out_values[i] = 100;
+    } else {
+      out_values[i] = (raw_val - MIN_VAL[i]) * 100 / (MAX_VAL[i] - MIN_VAL[i]);
+    }
   }
 }

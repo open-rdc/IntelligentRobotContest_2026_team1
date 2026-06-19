@@ -8,7 +8,7 @@
 #include "servo.h"
 #include "hardware/i2c.h"
 #include <stdio.h>
-
+#include "pico/stdio_usb.h"
 // I2Cピンとパラメータ
 static const uint I2C_SDA_PIN = 6;
 static const uint I2C_SCL_PIN = 7;
@@ -21,6 +21,11 @@ static float imu_offset = 0.0f;
 
 void robot_init(void) {
   stdio_init_all();
+
+  // USB CDCの接続確立を待機 (最大5秒)
+  for (int i = 0; i < 50 && !stdio_usb_connected(); i++) {
+    sleep_ms(100);
+  }
 
   // サブモジュールの初期化
   camera_init();
