@@ -33,9 +33,15 @@ project(rp2040_test C CXX ASM)
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
+# 共有ドライバの読み込み
+include(${CMAKE_CURRENT_LIST_DIR}/../shared/CMakeLists.txt)
+
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(rp2040_test rp2040_test.c bno055.c line_sensor.c color_sensor.c motor.c servo.c camera.c)
+add_executable(rp2040_test
+    rp2040_test.c
+    ${SHARED_SOURCES}
+)
 
 pico_set_program_name(rp2040_test "rp2040_test")
 pico_set_program_version(rp2040_test "0.1")
@@ -50,7 +56,7 @@ target_link_libraries(rp2040_test pico_stdlib hardware_i2c hardware_adc hardware
 
 target_include_directories(rp2040_test PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
+        ${SHARED_INCLUDES}
 )
 
 pico_add_extra_outputs(rp2040_test)
-

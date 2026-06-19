@@ -13,7 +13,7 @@ class Simulator :
     # ライントレースシミュレータのメインクラス
 
     # 速度倍率の選択肢
-    SPEED_OPTIONS = [0.1, 0.25, 0.5, 1.0, 2.0, 5.0, 10.0]
+    SPEED_OPTIONS = [0.5, 1.0, 2.0, 4.0, 8.0]
 
     def __init__(self, course_path, controller_fn=None) :
         # course_path: コース画像のパス
@@ -31,7 +31,7 @@ class Simulator :
         # シミュレーション設定
         self.dt = 0.001          # 物理演算の時間刻み [s]
         self.fps = 60            # 描画FPS
-        self.speed_index = 3     # SPEED_OPTIONSのインデックス (1.0x)
+        self.speed_index = 1     # SPEED_OPTIONSのインデックス (1.0x)
 
         # 状態
         self._running = False
@@ -189,6 +189,7 @@ class Simulator :
 
         clock = pygame.time.Clock()
         frame_count = 0
+        last_log_time = 0.0
 
         while True :
             if not self._handle_events() :
@@ -207,7 +208,8 @@ class Simulator :
                         time.sleep(0.001)
 
                 frame_count += 1
-                if frame_count % 60 == 0 :
+                if self._sim_time - last_log_time >= 1.0 :
+                    last_log_time = self._sim_time
                     lines_str = '[' + ', '.join(f'{v:.2f}' for v in self._line_sensor_values) + ']'
                     with self.api._lock :
                         ml = self.api.motor_l

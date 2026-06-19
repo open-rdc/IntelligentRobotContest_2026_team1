@@ -4,7 +4,7 @@ class RobotModel :
     # 対向二輪ロボットのキネマティクスモデル
     # モータの一次遅れ・不感帯にも対応
 
-    def __init__(self, track_width=190.0, wheel_radius=35.0, max_motor_speed=10.0,
+    def __init__(self, track_width=190.0, wheel_radius=35.0, max_motor_speed=20.0,
                  motor_tau=0.1, motor_deadzone=0.5) :
         # 200mm角・2kgロボットを想定したデフォルト値
         # track_width: 車輪間距離(トレッド) [mm]（車体幅200mmに対し左右20mmずつ内側）
@@ -58,7 +58,8 @@ class RobotModel :
     def _apply_deadzone(self, u) :
         if abs(u) <= self.motor_deadzone :
             return 0.0
-        return (u - math.copysign(self.motor_deadzone, u)) / (1.0 - self.motor_deadzone)
+        # return (u - math.copysign(self.motor_deadzone, u)) / (1.0 - self.motor_deadzone)
+        return u - math.copysign(self.motor_deadzone, u)
 
     def update(self, u_left, u_right, dt) :
         u_left = max(-1.0, min(1.0, u_left))

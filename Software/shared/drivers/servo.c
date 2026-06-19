@@ -1,6 +1,5 @@
 #include "servo.h"
 #include "hardware/pwm.h"
-#include <stdio.h>
 
 static const uint SERVO_PIN = 18;
 static const float PUSH_ANGLE = 73.0f;

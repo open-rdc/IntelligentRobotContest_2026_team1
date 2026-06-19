@@ -5,7 +5,7 @@
 #include "bno055.h"
 #include <stdbool.h>
 
-// 取得したデータを保持する構造体
+// 取得したデータを保持する構造体 (camera.cが内部で使用)
 typedef struct {
   int camera_values[16];
   int camera_value_count;

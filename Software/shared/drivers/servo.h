@@ -4,7 +4,7 @@
 #include "pico/stdlib.h"
 #include <stdint.h>
 
-// サーボの初期化 (18番ピン)
+// サーボの初期化 (GP18)
 void servo_init(void);
 
 // サーボのパルス幅を指定して角度を制御 (Futaba標準: 1520usが中央)

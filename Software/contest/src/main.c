@@ -1,120 +1,79 @@
+#include "robot_api.h"
 #include <stdio.h>
 
-#include "bno055.h"
-#include "camera.h"
-#include "color_sensor.h"
-#include "hardware/i2c.h"
-#include "line_sensor.h"
-#include "motor.h"
-#include "pico/stdlib.h"
-#include "sensor_data.h"
-#include "servo.h"
+// p_control.pyに準拠したメイン制御関数
+void main_control(void) {
+  uint32_t last_print = 0;
 
-SensorData g_sensor_data = {0};
+  robot_set_motor(100, 100);
 
-// I2Cピンとパラメータ
-static const uint I2C_SDA_PIN = 6;
-static const uint I2C_SCL_PIN = 7;
-static const uint I2C_FREQ = 400000;
-static const uint SENSOR_INTERVAL_MS = 100;
-static const uint DEBUG_LED_PIN[4] = {12, 13, 14, 15};
+  while (1) {
+    uint16_t line[4];
+    robot_get_line_sensors(line);
 
-#include "sensor_manager.h"
+    // デバッグ出力 (100ms周期)
+    uint32_t now = robot_get_time_ms();
+    if (now - last_print >= 100) {
+      last_print = now;
 
-int main() {
-  stdio_init_all();
+      // カメラ
+      int cam[16];
+      int cam_count = robot_get_camera(cam, 16);
+      if (cam_count > 0) {
+        printf("Cam:[");
+        for (int i = 0; i < cam_count; i++) {
+          printf("%d", cam[i]);
+          if (i < cam_count - 1) printf(" ");
+        }
+        printf("] ");
+      } else {
+        printf("Cam:[---] ");
+      }
 
-  // サブモジュールの初期化
-  camera_init();
-  line_sensor_init();
-  color_sensor_init();
-  servo_init();
-  motor_init();
+      // IMU
+      float yaw = robot_get_imu_yaw();
+      printf("BNO:[%.1f] ", yaw);
 
-  sleep_ms(2000);
-  // I2C1 初期化 (BNO055用)
-  i2c_init(i2c1, I2C_FREQ);
-  gpio_set_function(I2C_SDA_PIN, GPIO_FUNC_I2C);
-  gpio_set_function(I2C_SCL_PIN, GPIO_FUNC_I2C);
-  gpio_pull_up(I2C_SDA_PIN);
-  gpio_pull_up(I2C_SCL_PIN);
+      // ラインセンサ
+      printf("Line:[S0=%4d S1=%4d S2=%4d S3=%4d] ",
+             line[0], line[1], line[2], line[3]);
 
-  for (int i=0; i<4; i++) {
-    gpio_init(DEBUG_LED_PIN[i]);
-    gpio_set_dir(DEBUG_LED_PIN[i], GPIO_OUT);
-  }
-
-  sleep_ms(2000);
-  printf("=== Contest Main ===\n");
-
-  bool bno_ok = bno055_init(i2c1);
-  if (!bno_ok) {
-    printf("BNO055: 初期化失敗 (SDA=GP%d, SCL=GP%d, ADDR=0x%02X)\n",
-           I2C_SDA_PIN, I2C_SCL_PIN, BNO055_ADDR);
-  }
-
-  uint32_t last_sensor_time = 0;
-  uint32_t last_print_time = 0;
-
-  while (true) {
-    uint32_t now = to_ms_since_boot(get_absolute_time());
-
-    // UART受信処理
-    camera_poll();
-
-    // センサデータの定期更新 (10ms周期)
-    if (now - last_sensor_time >= 10) {
-      last_sensor_time = now;
-
-      update_sensors(bno_ok);
+      // カラーセンサ
+      uint16_t color[3];
+      robot_get_color_sensor(color);
+      printf("Color:[B=%4d G=%4d R=%4d]\n", color[0], color[1], color[2]);
     }
 
-    // まとめて出力 (保持しているデータを参照)
-    if (now - last_print_time >= SENSOR_INTERVAL_MS) {
-      last_print_time = now;
-        print_sensors(bno_ok);
-    }
-
-    // ==========================================
-    // メインロジック (ここにロボットの制御コードを追加)
-    // ==========================================
-
-    float error = (float)g_sensor_data.line_sensor[1] - (float)g_sensor_data.line_sensor[2];
-    float error2 = (float)g_sensor_data.line_sensor[0] - (float)g_sensor_data.line_sensor[3];
+    // P制御
+    float error = (float)line[1] - (float)line[2];
+    float error2 = (float)line[0] - (float)line[3];
 
     float base_speed = 10.0f;
     float kp = 0.2f;
-    float kp2 = 0.4f;
+    float kp2 = 0.5f;
 
-    float left_speed = base_speed + (kp * error + kp2 * error2);
-    float right_speed = base_speed - (kp * error + kp2 * error2);
+    float left = base_speed + (kp * error + kp2 * error2);
+    float right = base_speed - (kp * error + kp2 * error2);
 
-    if (left_speed > 0) {
-        left_speed += 50;
-    } else if (left_speed < 0) {
-        left_speed -= 50;
+    // 不感帯補償
+    if (left > 0) {
+      left += 50;
+    } else if (left < 0) {
+      left -= 50;
     }
-    if (right_speed > 0) {
-        right_speed += 50;
-    } else if (right_speed < 0) {
-        right_speed -= 50;
-    }
-
-    if (g_sensor_data.line_sensor[0] < 30 && g_sensor_data.line_sensor[3] < 30) {
-        gpio_put(DEBUG_LED_PIN[0], 1);
-        motor_set_speeds(0, 0);
-        sleep_ms(500);
-        motor_set_speeds(60, 60);
-        sleep_ms(500);
-        gpio_put(DEBUG_LED_PIN[0], 0);
+    if (right > 0) {
+      right += 50;
+    } else if (right < 0) {
+      right -= 50;
     }
 
-    // モータに速度指令を送信
-    motor_set_speeds(left_speed, right_speed);
-    // printf("line: %3d, %3d\n", g_sensor_data.line_sensor[1], g_sensor_data.line_sensor[2]);
-    // printf("error: %3.f\n", error);
-    // printf("motors: %3.f, %3.f\n", left_speed, right_speed);
-
-    sleep_ms(10);
+    // robot_set_motor(left, right);
+    robot_wait_ms(50);
   }
+}
+
+int main() {
+  robot_init();
+  main_control();
+  return 0;
 }

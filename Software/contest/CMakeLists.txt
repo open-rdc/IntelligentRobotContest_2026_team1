@@ -33,17 +33,14 @@ project(contest C CXX ASM)
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
+# 共有ドライバの読み込み
+include(${CMAKE_CURRENT_LIST_DIR}/../shared/CMakeLists.txt)
+
 # Add executable. Default name is the project name, version 0.1
 
 add_executable(contest
     src/main.c
-    src/sensor_manager.c
-    components/sensors/bno055.c
-    components/sensors/line_sensor.c
-    components/sensors/color_sensor.c
-    components/sensors/camera.c
-    components/actuators/motor.c
-    components/actuators/servo.c
+    ${SHARED_SOURCES}
 )
 
 pico_set_program_name(contest "contest")
@@ -59,9 +56,7 @@ target_link_libraries(contest pico_stdlib hardware_i2c hardware_adc hardware_pwm
 
 target_include_directories(contest PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/src
-        ${CMAKE_CURRENT_LIST_DIR}/components/sensors
-        ${CMAKE_CURRENT_LIST_DIR}/components/actuators
+        ${SHARED_INCLUDES}
 )
 
 pico_add_extra_outputs(contest)
-

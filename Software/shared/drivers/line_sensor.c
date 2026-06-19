@@ -5,7 +5,8 @@ static const uint MUX_S0_PIN = 17;
 static const uint MUX_S1_PIN = 16;
 static const uint ADC_PIN = 26;
 
-static const uint MIN_VAL[4] = {1100, 820, 750, 750};
+// キャリブレーション値 (contest版)
+static const uint MIN_VAL[4] = {1000, 650, 700, 700};
 static const uint MAX_VAL[4] = {3800, 3800, 3800, 3800};
 
 void line_sensor_init(void) {
@@ -29,6 +30,5 @@ void line_sensor_read_all(uint16_t out_values[4]) {
     gpio_put(MUX_S1_PIN, (i >> 1) & 0x01);
     sleep_us(10);
     out_values[i] = (adc_read() - MIN_VAL[i]) * 100 / (MAX_VAL[i] - MIN_VAL[i]);
-    // out_values[i] = adc_read();
   }
 }

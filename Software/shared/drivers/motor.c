@@ -1,6 +1,7 @@
 #include "motor.h"
 #include "hardware/pwm.h"
 
+// ピン定義 (contest版: 右モータ=GP4,5 / 左モータ=GP8,9)
 #define MOTOR_RIGHT_A 5
 #define MOTOR_RIGHT_B 4
 #define MOTOR_LEFT_A 8
@@ -19,28 +20,28 @@ void motor_init(void) {
   gpio_set_function(MOTOR_LEFT_A, GPIO_FUNC_PWM);
   gpio_set_function(MOTOR_LEFT_B, GPIO_FUNC_PWM);
 
-  // 8,9番ピンのPWMスライスを取得 (共にスライス4)
-  uint slice1 = pwm_gpio_to_slice_num(MOTOR_RIGHT_A);
-  // 10,11番ピンのPWMスライスを取得 (共にスライス5)
-  uint slice2 = pwm_gpio_to_slice_num(MOTOR_LEFT_A);
+  // 右モータ: GP4,5 → スライス2
+  uint slice_r = pwm_gpio_to_slice_num(MOTOR_RIGHT_A);
+  // 左モータ: GP8,9 → スライス4
+  uint slice_l = pwm_gpio_to_slice_num(MOTOR_LEFT_A);
 
-  // モータ1用PWM設定
-  pwm_set_clkdiv(slice1, 1.0f);
-  pwm_set_wrap(slice1, PWM_WRAP - 1);
-  pwm_set_chan_level(slice1, PWM_CHAN_A, 0);
-  pwm_set_chan_level(slice1, PWM_CHAN_B, 0);
-  pwm_set_enabled(slice1, true);
+  // 右モータ用PWM設定
+  pwm_set_clkdiv(slice_r, 1.0f);
+  pwm_set_wrap(slice_r, PWM_WRAP - 1);
+  pwm_set_chan_level(slice_r, PWM_CHAN_A, 0);
+  pwm_set_chan_level(slice_r, PWM_CHAN_B, 0);
+  pwm_set_enabled(slice_r, true);
 
-  // モータ2用PWM設定
-  pwm_set_clkdiv(slice2, 1.0f);
-  pwm_set_wrap(slice2, PWM_WRAP - 1);
-  pwm_set_chan_level(slice2, PWM_CHAN_A, 0);
-  pwm_set_chan_level(slice2, PWM_CHAN_B, 0);
-  pwm_set_enabled(slice2, true);
+  // 左モータ用PWM設定
+  pwm_set_clkdiv(slice_l, 1.0f);
+  pwm_set_wrap(slice_l, PWM_WRAP - 1);
+  pwm_set_chan_level(slice_l, PWM_CHAN_A, 0);
+  pwm_set_chan_level(slice_l, PWM_CHAN_B, 0);
+  pwm_set_enabled(slice_l, true);
 }
 
-// 内部関数：指定したピンペアに対して-100~100の範囲でPWMを出力
-void set_motor_pwm(uint pin_a, uint pin_b, float speed) {
+// 内部関数: 指定したピンペアに対して-100~100の範囲でPWMを出力
+static void set_motor_pwm(uint pin_a, uint pin_b, float speed) {
   uint slice = pwm_gpio_to_slice_num(pin_a);
   uint chan_a = pwm_gpio_to_channel(pin_a);
   uint chan_b = pwm_gpio_to_channel(pin_b);
@@ -66,7 +67,15 @@ void set_motor_pwm(uint pin_a, uint pin_b, float speed) {
   }
 }
 
-void motor_set_speeds(float left_speed, float right_speed) {
-  set_motor_pwm(MOTOR_RIGHT_A, MOTOR_RIGHT_B, right_speed);
-  set_motor_pwm(MOTOR_LEFT_A, MOTOR_LEFT_B, left_speed);
+void motor_right_set_speed(float speed) {
+  set_motor_pwm(MOTOR_RIGHT_A, MOTOR_RIGHT_B, speed);
+}
+
+void motor_left_set_speed(float speed) {
+  set_motor_pwm(MOTOR_LEFT_A, MOTOR_LEFT_B, speed);
+}
+
+void motor_set_speeds(float left, float right) {
+  motor_left_set_speed(left);
+  motor_right_set_speed(right);
 }
