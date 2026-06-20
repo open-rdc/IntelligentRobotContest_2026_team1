@@ -46,8 +46,10 @@ static void set_motor_pwm(uint pin_a, uint pin_b, float speed) {
   uint chan_a = pwm_gpio_to_channel(pin_a);
   uint chan_b = pwm_gpio_to_channel(pin_b);
 
-  if (speed > 100.0f) speed = 100.0f;
-  if (speed < -100.0f) speed = -100.0f;
+  if (speed > 100.0f)
+    speed = 100.0f;
+  if (speed < -100.0f)
+    speed = -100.0f;
 
   float abs_speed = speed >= 0 ? speed : -speed;
   uint16_t duty = (uint16_t)((PWM_WRAP - 1) * (abs_speed / 100.0f));

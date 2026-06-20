@@ -7,7 +7,8 @@ static const uint ADC_PIN = 26;
 
 // キャリブレーション値 (contest版)
 static const uint MIN_VAL[4] = {1000, 650, 700, 700};
-static const uint MAX_VAL[4] = {3800, 3800, 3800, 3800};
+// static const uint MAX_VAL[4] = {3800, 3800, 3800, 3800};
+static const uint MAX_VAL[4] = {2800, 2800, 2500, 2800};
 
 void line_sensor_init(void) {
   // ADCとマルチプレクサ初期化
@@ -38,5 +39,7 @@ void line_sensor_read_all(uint16_t out_values[4]) {
     } else {
       out_values[i] = (raw_val - MIN_VAL[i]) * 100 / (MAX_VAL[i] - MIN_VAL[i]);
     }
+
+    // out_values[i] = raw_val; // 生値確認用
   }
 }
