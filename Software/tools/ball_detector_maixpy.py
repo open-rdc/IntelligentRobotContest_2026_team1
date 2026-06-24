@@ -12,7 +12,7 @@ UART_RX_PIN = 34
 
 fm.register(UART_TX_PIN, fm.fpioa.UART1_TX, force=True)
 fm.register(UART_RX_PIN, fm.fpioa.UART1_RX, force=True)
-uart = UART(UART.UART1, 115200, 8, 1, 0, timeout=1000, read_buf_len=4096)
+uart = UART(UART.UART1, 115200, 8, 0, 1, timeout=1000, read_buf_len=4096)
 
 # ============================================================
 # 色閾値プリセット (MaixPy LABスケール: L=0-100, A=-128~127, B=-128~127)
@@ -33,7 +33,7 @@ BLOB_AREA_MIN = 100       # blobの最小面積 (これ以下は無視)
 ROI_MARGIN = 5            # blob外接矩形に加えるマージン (px)
 
 # 検出パラメータ (find_circles用)
-CIRCLE_THRESHOLD = 4200   # ハフ変換の投票閾値 (小さいほど多く検出、大きいほど厳選)
+CIRCLE_THRESHOLD = 4000   # ハフ変換の投票閾値 (小さいほど多く検出、大きいほど厳選)
 R_MIN = 20                # 検出する最小半径 (px)
 R_MAX = 80                # 検出する最大半径 (px)
 R_STEP = 2                # 半径の探索ステップ

@@ -1,6 +1,6 @@
 #include "camera.h"
-#include "sensor_data.h"
 #include "hardware/uart.h"
+#include "sensor_data.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -32,7 +32,8 @@ void camera_poll(void) {
           if (p == end) {
             break;
           }
-          g_sensor_data.camera_values[g_sensor_data.camera_value_count++] = (int)val;
+          g_sensor_data.camera_values[g_sensor_data.camera_value_count++] =
+              (int)val;
           p = end;
         }
 

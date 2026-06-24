@@ -7,6 +7,9 @@ Python + pygame によるライントレースロボットシミュレータ。
 
 ```bash
 pip install pygame
+
+# (オプション) より正確なセンサの光量減衰シミュレーションを行う場合
+pip install numpy
 ```
 
 ## クイックスタート
@@ -29,20 +32,20 @@ from simulator import Simulator
 
 def main_task(robot) :
     # 0.5秒間まっすぐ前進
-    robot.move_motor(0.5, 0.5)
+    robot.start_motor(0.5, 0.5)
     robot.wait(0.5)
     
     # 停止して1秒待つ
-    robot.move_motor(0, 0)
+    robot.start_motor(0, 0)
     robot.wait(1.0)
     
     # センサ値を使った制御ループ
     while True :
         line_sensors = robot.get_line_sensors()
         if line_sensors[1] < 0.5 :
-            robot.move_motor(0.3, 0.5)
+            robot.start_motor(0.3, 0.5)
         else :
-            robot.move_motor(0.5, 0.3)
+            robot.start_motor(0.5, 0.3)
         robot.wait(0.001)  # 1msの待機
 
 sim = Simulator('courses/simple_oval.png', controller_fn=main_task)
@@ -51,7 +54,7 @@ sim.run()
 ```
 
 **マイコン方式で利用できる主なAPI:**
-- `robot.move_motor(left, right)`: 左右のモータの出力を設定します（-1.0～1.0）
+- `robot.start_motor(left, right)`: 左右のモータの出力を設定します（-1.0～1.0）
 - `robot.wait(seconds)`: 指定したシミュレーション時間（秒）だけ待機します
 - `robot.get_line_sensors()`: 各ラインセンサの値のリストを取得します
 - `robot.get_imu_yaw()`: 仮想IMUのヨー角を取得します（初期位置またはリセット時を0度とする）
@@ -80,10 +83,11 @@ sim.set_robot_params(
 
 # ラインセンサパラメータ
 sim.set_line_sensor_params(
-    count=5,              # センサ数
-    forward_offset=60,    # 前方オフセット [mm]
-    spacing=10,           # センサ間隔 [mm]
-    fov_radius=3,         # 視野半径 [mm]
+    forward_offset=72.0,  # 前方オフセット [mm]
+    offsets=[-20.1, -10.5, 10.5, 20.1],  # 各センサの横方向オフセット（不等間隔配置） [mm]
+    fov_radius=2.6,       # 視野半径 [mm]
+    sensor_height=5.0,    # センサの床面からの高さ [mm]
+    half_angle=30.0,      # センサ光の半減角 [deg]
     noise_std=0.0,        # ノイズ強度
 )
 

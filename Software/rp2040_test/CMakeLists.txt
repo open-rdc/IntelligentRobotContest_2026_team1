@@ -34,12 +34,12 @@ project(rp2040_test C CXX ASM)
 pico_sdk_init()
 
 # 共有ドライバの読み込み
-include(${CMAKE_CURRENT_LIST_DIR}/../shared/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/../components/CMakeLists.txt)
 
 # Add executable. Default name is the project name, version 0.1
 
 add_executable(rp2040_test
-    rp2040_test.c
+    src/main.c
     ${SHARED_SOURCES}
 )
 

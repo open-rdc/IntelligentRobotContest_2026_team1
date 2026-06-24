@@ -5,21 +5,16 @@
 ## ディレクトリ構成
 
 ```
-Software/
-├── shared/                  共有ドライバ・ロボットAPI
-│   ├── robot_api.c / .h     ロボット制御API
-│   ├── CMakeLists.txt
-│   └── drivers/              ハードウェアドライバ
-│       ├── bno055.c / .h       IMU (9軸姿勢センサ)
-│       ├── camera.c / .h       カメラ (UART受信)
-│       ├── color_sensor.c / .h カラーセンサ (ADC)
-│       ├── line_sensor.c / .h  ライントレースセンサ (ADC + MUX)
-│       ├── motor.c / .h        DCモータ (PWM)
-│       ├── servo.c / .h        サーボモータ (PWM)
-│       └── sensor_data.h       センサデータ構造体 (内部用)
+├── components/              コンポーネントごとのドライバ群
+│   ├── actuators/           アクチュエータ系 (motor, servo)
+│   ├── api/                 ロボット制御API (robot_api)
+│   ├── common/              共通データ構造 (sensor_data)
+│   ├── sensors/             センサ系 (bno055, camera, color, line)
+│   └── utils/               ユーティリティ (logger)
 │
 ├── contest/                 コンテスト本番用プログラム
-│   ├── src/main.c
+│   ├── src/                 メインロジックなど
+│   │   └── main.c
 │   └── CMakeLists.txt
 │
 ├── rp2040_test/             センサ動作確認用テストプログラム
@@ -31,9 +26,10 @@ Software/
 └── ball_detector_maixpy.py  UnitV用ボール検出プログラム (MaixPy)
 ```
 
-## shared - 共有ドライバ・ロボットAPI
+## components - ドライバ群
 
-`contest` と `rp2040_test` の両プロジェクトから共有されるハードウェアドライバと、それらをラップするロボット制御APIを提供する。
+`contest` などのプロジェクトで使用されるハードウェアドライバ。
+`sensors/` フォルダにはセンサ類、`actuators/` フォルダにはモータ類が配置されています。
 
 ### ピンアサイン
 

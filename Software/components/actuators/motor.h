@@ -13,4 +13,7 @@ void motor_left_set_speed(float speed);
 // 左右モータの回転速度を同時に設定 (speed: -100.0 ~ 100.0)
 void motor_set_speeds(float left, float right);
 
+// 左右モータの現在の設定値を取得
+void motor_get_speeds(float* left, float* right);
+
 #endif // MOTOR_H

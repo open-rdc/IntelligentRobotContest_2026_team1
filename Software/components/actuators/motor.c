@@ -69,15 +69,25 @@ static void set_motor_pwm(uint pin_a, uint pin_b, float speed) {
   }
 }
 
+static float current_left_speed = 0.0f;
+static float current_right_speed = 0.0f;
+
 void motor_right_set_speed(float speed) {
+  current_right_speed = speed;
   set_motor_pwm(MOTOR_RIGHT_A, MOTOR_RIGHT_B, speed);
 }
 
 void motor_left_set_speed(float speed) {
+  current_left_speed = speed;
   set_motor_pwm(MOTOR_LEFT_A, MOTOR_LEFT_B, speed);
 }
 
 void motor_set_speeds(float left, float right) {
   motor_left_set_speed(left);
   motor_right_set_speed(right);
+}
+
+void motor_get_speeds(float* left, float* right) {
+  if (left) *left = current_left_speed;
+  if (right) *right = current_right_speed;
 }

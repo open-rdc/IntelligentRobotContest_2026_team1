@@ -11,6 +11,9 @@ void robot_init(void);
 // モータ出力の設定 (-100.0 ~ 100.0)
 void robot_set_motor(float left, float right);
 
+// 現在のモータ出力値を取得
+void robot_get_motor_speeds(float* left, float* right);
+
 // 指定ミリ秒の待機 (内部でカメラのUART受信を処理)
 void robot_wait_ms(uint32_t ms);
 

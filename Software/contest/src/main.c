@@ -1,4 +1,5 @@
 #include "robot_api.h"
+#include "logger.h"
 #include <stdio.h>
 #include <math.h>
 
@@ -15,15 +16,6 @@
 
 
 // ===== ユーティリティ =====
-
-static float current_motor_l = 0.0f;
-static float current_motor_r = 0.0f;
-
-#define set_motor(l, r) do { \
-  current_motor_l = (l); \
-  current_motor_r = (r); \
-  robot_set_motor(l, r); \
-} while(0)
 
 // 角度を -180 ~ 180 の範囲に正規化する
 static float normalize_angle(float a) {
@@ -57,7 +49,7 @@ static void trace_step(uint16_t line[4]) {
   if (right > 0) right += DEAD_ZONE_COMP;
   else if (right < 0) right -= DEAD_ZONE_COMP;
 
-  set_motor(left, right);
+  robot_set_motor(left, right);
 }
 
 // 指定した絶対角度まで旋回する
@@ -66,12 +58,12 @@ static void turn_abs(float target) {
     float error = normalize_angle(robot_get_imu_yaw() - target);
     if (fabsf(error) <= TURN_TOLERANCE) break;
     if (error > 0)
-      set_motor(TURN_SPEED, -TURN_SPEED);
+      robot_set_motor(TURN_SPEED, -TURN_SPEED);
     else
-      set_motor(-TURN_SPEED, TURN_SPEED);
+      robot_set_motor(-TURN_SPEED, TURN_SPEED);
     robot_wait_ms(100); // ログが早すぎないように100msに変更
   }
-  set_motor(0, 0);
+  robot_set_motor(0, 0);
 }
 
 // 現在角度から指定した角度だけ旋回する
@@ -82,9 +74,9 @@ static void turn_rel(float delta) {
 
 // 一定時間モータを駆動して停止する
 static void drive_timed(uint32_t ms, float left, float right) {
-  set_motor(left, right);
+  robot_set_motor(left, right);
   robot_wait_ms(ms);
-  set_motor(0, 0);
+  robot_set_motor(0, 0);
 }
 
 // P制御でライントレースしながら指定時間走行する
@@ -96,7 +88,7 @@ static void trace_for(uint32_t ms) {
     robot_wait_ms(10);
     elapsed += 10;
   }
-  set_motor(0, 0);
+  robot_set_motor(0, 0);
 }
 
 // 交差点まで走行する
@@ -108,12 +100,12 @@ static void move_to_cross(float speed, bool trace) {
       trace_step(line);
     } else {
       robot_get_line_sensors(line);
-      set_motor(speed, speed);
+      robot_set_motor(speed, speed);
     }
     if (is_cross(line)) break;
     robot_wait_ms(10);
   }
-  set_motor(0, 0);
+  robot_set_motor(0, 0);
 }
 
 // ラインを見失った際に左右に首振りしてラインを探す
@@ -122,7 +114,7 @@ static void search_line(float range_deg) {
   uint16_t line[4];
 
   // 左旋回で探索
-  set_motor(-TURN_SPEED, TURN_SPEED);
+  robot_set_motor(-TURN_SPEED, TURN_SPEED);
   while (normalize_angle(robot_get_imu_yaw() - pre_yaw) < range_deg) {
     robot_get_line_sensors(line);
     if (line[1] < LINE_FOUND_TH && line[2] < LINE_FOUND_TH) {
@@ -133,7 +125,7 @@ static void search_line(float range_deg) {
   }
 
   // 右旋回で探索
-  set_motor(TURN_SPEED, -TURN_SPEED);
+  robot_set_motor(TURN_SPEED, -TURN_SPEED);
   while (normalize_angle(robot_get_imu_yaw() - pre_yaw) > -range_deg) {
     robot_get_line_sensors(line);
     if (line[1] < LINE_FOUND_TH && line[2] < LINE_FOUND_TH) {
@@ -176,90 +168,20 @@ void main_control(void) {
   int cross_count = 0;
   uint16_t line[4];
 
-  uint32_t last_print = 0;
+  // 変数定義
 
-  while (1) {
-    trace_step(line);
-      robot_get_line_sensors(line);
-
-    // 100ms周期のデバッグ出力
-    uint32_t now = robot_get_time_ms();
-    if (now - last_print >= 100) {
-      last_print = now;
-
-      // カメラ
-      int cam[16];
-      int cam_count = robot_get_camera(cam, 16);
-      if (cam_count > 0) {
-        printf("Cam:[");
-        for (int i = 0; i < cam_count; i++) {
-          printf("%d", cam[i]);
-          if (i < cam_count - 1) printf(" ");
-        }
-        printf("] ");
-      } else {
-        printf("Cam:[---] ");
-      }
-
-      // IMU
-      float yaw = robot_get_imu_yaw();
-      printf("BNO:[%.1f] ", yaw);
-
-      // ラインセンサ
-      printf("Line:[S0=%4d S1=%4d S2=%4d S3=%4d] ",
-             line[0], line[1], line[2], line[3]);
-
-      // カラーセンサとモータ出力
-      uint16_t color[3];
-      robot_get_color_sensor(color);
-      printf("Color:[B=%4d G=%4d R=%4d] ", color[0], color[1], color[2]);
-      printf("Motor:[L=%4.0f R=%4.0f]\n", current_motor_l, current_motor_r);
-    }
-
-    robot_wait_ms(100);
-  }
 
   while (1) {
     trace_step(line);
 
-    // 100ms周期のデバッグ出力
-    uint32_t now = robot_get_time_ms();
-    if (now - last_print >= 100) {
-      last_print = now;
-
-      // カメラ
-      int cam[16];
-      int cam_count = robot_get_camera(cam, 16);
-      if (cam_count > 0) {
-        printf("Cam:[");
-        for (int i = 0; i < cam_count; i++) {
-          printf("%d", cam[i]);
-          if (i < cam_count - 1) printf(" ");
-        }
-        printf("] ");
-      } else {
-        printf("Cam:[---] ");
-      }
-
-      // IMU
-      float yaw = robot_get_imu_yaw();
-      printf("BNO:[%.1f] ", yaw);
-
-      // ラインセンサ
-      printf("Line:[S0=%4d S1=%4d S2=%4d S3=%4d] ",
-             line[0], line[1], line[2], line[3]);
-
-      // カラーセンサとモータ出力
-      uint16_t color[3];
-      robot_get_color_sensor(color);
-      printf("Color:[B=%4d G=%4d R=%4d] ", color[0], color[1], color[2]);
-      printf("Motor:[L=%4.0f R=%4.0f]\n", current_motor_l, current_motor_r);
-    }
+    logger_update();
+    robot_wait_ms(10);
+    continue;
 
     if (is_cross(line)) {
       cross_count++;
       printf("cross: %d\n", cross_count);
-      set_motor(0, 0);
+      robot_set_motor(0, 0);
       robot_wait_ms(500);
       drive_timed(200, BASE_SPEED, BASE_SPEED);
 

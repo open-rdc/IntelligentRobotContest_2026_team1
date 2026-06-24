@@ -59,6 +59,10 @@ void robot_set_motor(float left, float right) {
   motor_set_speeds(left, right);
 }
 
+void robot_get_motor_speeds(float* left, float* right) {
+  motor_get_speeds(left, right);
+}
+
 void robot_wait_ms(uint32_t ms) {
   // 待機中もカメラのUART受信を処理する
   uint32_t start = to_ms_since_boot(get_absolute_time());
