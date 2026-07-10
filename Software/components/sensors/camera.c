@@ -27,7 +27,7 @@ void camera_poll(void) {
         g_sensor_data.camera_value_count = 0;
         char *p = uart_buf;
         char *end;
-        while (*p != '\0' && g_sensor_data.camera_value_count < 16) {
+        while (*p != '\0' && g_sensor_data.camera_value_count < 32) {
           long val = strtol(p, &end, 10);
           if (p == end) {
             break;

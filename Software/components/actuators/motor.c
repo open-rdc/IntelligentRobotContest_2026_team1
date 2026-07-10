@@ -1,5 +1,6 @@
 #include "motor.h"
 #include "hardware/pwm.h"
+#include <stdio.h>
 
 // ピン定義 (contest版: 右モータ=GP4,5 / 左モータ=GP8,9)
 #define MOTOR_RIGHT_A 5
@@ -52,20 +53,20 @@ static void set_motor_pwm(uint pin_a, uint pin_b, float speed) {
     speed = -100.0f;
 
   float abs_speed = speed >= 0 ? speed : -speed;
-  uint16_t duty = (uint16_t)((PWM_WRAP - 1) * (abs_speed / 100.0f));
+  uint16_t duty = (uint16_t)(PWM_WRAP * (abs_speed / 100.0f));
 
   if (speed > 0) {
     // 正転
-    pwm_set_chan_level(slice, chan_a, duty);
-    pwm_set_chan_level(slice, chan_b, 0);
+    pwm_set_chan_level(slice, chan_a, PWM_WRAP);
+    pwm_set_chan_level(slice, chan_b, PWM_WRAP - duty);
   } else if (speed < 0) {
     // 逆転
-    pwm_set_chan_level(slice, chan_a, 0);
-    pwm_set_chan_level(slice, chan_b, duty);
+    pwm_set_chan_level(slice, chan_a, PWM_WRAP - duty);
+    pwm_set_chan_level(slice, chan_b, PWM_WRAP);
   } else {
     // 停止
-    pwm_set_chan_level(slice, chan_a, 0);
-    pwm_set_chan_level(slice, chan_b, 0);
+    pwm_set_chan_level(slice, chan_a, PWM_WRAP);
+    pwm_set_chan_level(slice, chan_b, PWM_WRAP);
   }
 }
 
@@ -87,7 +88,9 @@ void motor_set_speeds(float left, float right) {
   motor_right_set_speed(right);
 }
 
-void motor_get_speeds(float* left, float* right) {
-  if (left) *left = current_left_speed;
-  if (right) *right = current_right_speed;
+void motor_get_speeds(float *left, float *right) {
+  if (left)
+    *left = current_left_speed;
+  if (right)
+    *right = current_right_speed;
 }

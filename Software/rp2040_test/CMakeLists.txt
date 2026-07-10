@@ -47,8 +47,8 @@ pico_set_program_name(rp2040_test "rp2040_test")
 pico_set_program_version(rp2040_test "0.1")
 
 
-# Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(rp2040_test 1)
+# UART0はカメラ通信に使用するため、stdio出力はUSBのみ
+pico_enable_stdio_uart(rp2040_test 0)
 pico_enable_stdio_usb(rp2040_test 1)
 
 # ライブラリのリンク (pico_stdlibにuart/timer等は含まれる)

@@ -47,8 +47,8 @@ pico_set_program_name(contest "contest")
 pico_set_program_version(contest "0.1")
 
 
-# Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(contest 1)
+# UART0はカメラ通信に使用するため、stdio出力はUSBのみ
+pico_enable_stdio_uart(contest 0)
 pico_enable_stdio_usb(contest 1)
 
 # ライブラリのリンク (pico_stdlibにuart/timer等は含まれる)

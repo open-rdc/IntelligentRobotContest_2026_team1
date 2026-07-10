@@ -1,13 +1,29 @@
 #include "logger.h"
 #include "robot_api.h"
+#include <stdio.h>
 
 // 全センサとモータ値のテスト出力
 int main() {
   robot_init();
-  static uint32_t last_print = 0;
+  uint32_t last_print = 0;
+  uint32_t last_motor = 0;
+  bool flag = true;
+
+  robot_set_motor(25.0f, 25.0f);
 
   while (1) {
     uint32_t now = robot_get_time_ms();
+
+    // if (now - last_motor >= 2000) {
+    //     last_motor = now;
+    //     if (flag) {
+    //         robot_set_motor(80.0f, 80.0f);
+    //     } else {
+    //         robot_set_motor(-80.0f, -80.0f);
+    //     }
+    //     flag = !flag;
+    // }
+
     if (now - last_print >= 100) {
       last_print = now;
 
@@ -33,8 +49,7 @@ int main() {
       // ラインセンサ
       uint16_t line[4];
       robot_get_line_sensors(line);
-      printf("Line:[S0=%4d S1=%4d S2=%4d S3=%4d] ", line[0], line[1], line[2],
-             line[3]);
+      printf("Line:[S0=%4d S1=%4d S2=%4d S3=%4d] ", line[0], line[1], line[2], line[3]);
 
       // カラーセンサ
       uint16_t color[3];
@@ -47,8 +62,7 @@ int main() {
       printf("Motor:[L=%4.0f R=%4.0f]\n", motor_l, motor_r);
     }
 
-    robot_wait_ms(
-        10); // 10ms周期でループを回すが、loggerは内部で100ms周期に制限する
+    robot_wait_ms(10); // 10ms周期でループを回すが、loggerは内部で100ms周期に制限する
   }
   return 0;
 }

@@ -33,7 +33,7 @@ BLOB_AREA_MIN = 100       # blobの最小面積 (これ以下は無視)
 ROI_MARGIN = 5            # blob外接矩形に加えるマージン (px)
 
 # 検出パラメータ (find_circles用)
-CIRCLE_THRESHOLD = 4000   # ハフ変換の投票閾値 (小さいほど多く検出、大きいほど厳選)
+CIRCLE_THRESHOLD = 2000   # ハフ変換の投票閾値 (小さいほど多く検出、大きいほど厳選)
 R_MIN = 20                # 検出する最小半径 (px)
 R_MAX = 80                # 検出する最大半径 (px)
 R_STEP = 2                # 半径の探索ステップ
@@ -53,7 +53,7 @@ DRAW_COLORS = {
 DETECT_COLORS = ['red', 'yellow', 'blue']  # 検出対象の色
 SHOW_BINARY = False       # 二値化マスクを表示 (Trueで元映像を二値化に置換)
 BINARY_COLORS = ['red', 'yellow', 'blue']  # 二値化対象の色 (SHOW_BINARY=True時)
-SHOW_BLOBS = False        # blob外接矩形を描画
+SHOW_BLOBS = True        # blob外接矩形を描画
 SHOW_ROI = False          # ROI矩形 (マージン付き) を描画
 SHOW_CIRCLES = True       # 検出した円を描画
 SHOW_PRINT = True         # 検出結果をシリアル出力
@@ -93,15 +93,7 @@ def detect(img, extra_fb, color_name='red') :
     if not blobs :
         return [], []
 
-    # ステップ2: 二値化画像を準備
-    extra_fb.draw_image(img, 0, 0)
-    extra_fb.binary([thresh])
-
-    # ステップ2.5: モルフォロジー処理 (opening: erode→dilate でノイズ除去)
-    extra_fb.erode(1)
-    extra_fb.dilate(1)
-
-    # ステップ3: 各blobのROI内でfind_circles
+    # ステップ3: 各blobのROI内で二値化・モルフォロジー処理を行いfind_circles
     results = []
     for b in blobs :
         # blob外接矩形にマージンを加えてROIを設定
@@ -116,6 +108,15 @@ def detect(img, extra_fb, color_name='red') :
         # ROIが小さすぎる場合はスキップ
         if roi[2] < R_MIN * 2 or roi[3] < R_MIN * 2 :
             continue
+
+        # ステップ2: ROI内のみ二値化・モルフォロジー処理 (全画面処理を回避して軽量化)
+        extra_fb.draw_image(img, roi[0], roi[1], roi=roi)
+        extra_fb.binary([thresh], roi=roi)
+        extra_fb.erode(1, roi=roi)
+        extra_fb.dilate(1, roi=roi)
+
+        # ハフ変換前のノイズ平滑化 (エッジを滑らかにして円検出を安定させる)
+        extra_fb.mean(1, roi=roi)
 
         circles = extra_fb.find_circles(
             roi=roi,
@@ -159,6 +160,9 @@ while True :
     clock.tick()
     img = sensor.snapshot()
 
+    # すべての検出結果をまとめるリスト
+    all_results = []
+
     # DETECT_COLORSで指定した色のみ検出
     for color_name in DETECT_COLORS :
         results, blobs = detect(img, extra_fb, color_name)
@@ -187,17 +191,24 @@ while True :
                 img.draw_circle(cx, cy, rad, color=draw_color, thickness=2)
                 img.draw_cross(cx, cy, size=5, color=draw_color, thickness=1)
 
-        # シリアル出力およびUART送信
-        if SHOW_PRINT :
-            color_map = {'red': 1, 'yellow': 2, 'blue': 3}
-            color_id = color_map.get(color_name, 0)
-            for r in results :
-                # 送信用文字列を生成 (末尾に改行コード付与)
-                # 色ID(1:red, 2:yellow, 3:blue) cx cy r mag のスペース区切り
-                msg = '%d %d %d %d %d\n' % (
-                    color_id, r['cx'], r['cy'], r['radius'], r['magnitude'])
-                print(msg.strip())  # REPLへの出力用
-                uart.write(msg)     # UART経由での送信
+        # 検出結果をリストに追加
+        color_map = {'red': 1, 'yellow': 2, 'blue': 3}
+        color_id = color_map.get(color_name, 0)
+        for r in results :
+            all_results.append((color_id, r['cx'], r['cy'], r['radius'], r['magnitude']))
+
+    # シリアル出力およびUART送信 (全色分を1行にまとめて送信)
+    if SHOW_PRINT :
+        if not all_results:
+            # ボールが1つも検出されなかった場合
+            msg = "0\n"
+        else:
+            # 複数ボールをスペース区切りで連結
+            parts = ["%d %d %d %d %d" % res for res in all_results]
+            msg = " ".join(parts) + "\n"
+        
+        print(msg.strip())  # REPLへの出力用
+        uart.write(msg)     # UART経由での送信
 
 
     # 二値化マスク表示 (元映像を上書き)

@@ -10,28 +10,44 @@ void logger_update(void) {
     last_print = now;
 
     // カメラ
-    int cam[16];
-    int cam_count = robot_get_camera(cam, 16);
+    int cam[32];
+    int cam_count = robot_get_camera(cam, 32);
     if (cam_count > 0) {
-      printf("Cam:[");
-      for (int i = 0; i < cam_count; i++) {
-        printf("%d", cam[i]);
-        if (i < cam_count - 1) printf(" ");
+      if (cam_count == 1 && cam[0] == 0) {
+        printf("Cam:[No Balls] ");
+      } else if (cam_count % 5 == 0) {
+        printf("Cam:[");
+        for (int i = 0; i < cam_count; i += 5) {
+          const char *color_str = "Unknown";
+          if (cam[i] == 1)
+            color_str = "Red";
+          else if (cam[i] == 2)
+            color_str = "Yellow";
+          else if (cam[i] == 3)
+            color_str = "Blue";
+
+          printf("{C:%-6s X:%3d Y:%3d R:%3d}", color_str, cam[i + 1],
+                 cam[i + 2], cam[i + 3]);
+          if (i + 4 < cam_count)
+            printf(" ");
+        }
+        printf("] ");
+      } else {
+        printf("Cam:[Format Error] ");
       }
-      printf("] ");
     } else {
-      printf("Cam:[---] ");
+      printf("Cam:[Timeout] ");
     }
 
     // IMU
     float yaw = robot_get_imu_yaw();
-    printf("BNO:[%.1f] ", yaw);
+    printf("Yaw:[%.1f] ", yaw);
 
     // ラインセンサ
     uint16_t line[4];
     robot_get_line_sensors(line);
-    printf("Line:[S0=%4d S1=%4d S2=%4d S3=%4d] ",
-           line[0], line[1], line[2], line[3]);
+    printf("Line:[S0=%4d S1=%4d S2=%4d S3=%4d] ", line[0], line[1], line[2],
+           line[3]);
 
     // カラーセンサ
     uint16_t color[3];
@@ -41,6 +57,8 @@ void logger_update(void) {
     // モータ出力
     float motor_l, motor_r;
     robot_get_motor_speeds(&motor_l, &motor_r);
-    printf("Motor:[L=%4.0f R=%4.0f]\n", motor_l, motor_r);
+    printf("Motor:[L=%4.0f R=%4.0f]", motor_l, motor_r);
+
+    printf("\n");
   }
 }

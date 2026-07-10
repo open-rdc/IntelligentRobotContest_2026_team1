@@ -2,6 +2,7 @@
 #include "logger.h"
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 // --- 制御定数 (p_control.pyの値を0-100スケールに変換) ---
 #define BASE_SPEED       60.0f   // 0.6 * 100
@@ -141,6 +142,80 @@ static void search_line(float range_deg) {
   drive_timed(1000, BASE_SPEED, BASE_SPEED);
 }
 
+// 指定した色のボールがカメラの中央（X=160付近）に来るように旋回する
+// target_color: 1=Red, 2=Yellow, 3=Blue
+// 戻り値: true=中央合わせ成功, false=ボールを見失った
+static bool align_to_ball(int target_color) {
+  int cam[32];
+  float kp = 0.3f;         // P制御の比例ゲイン
+  int tolerance = 15;      // 許容誤差 (ピクセル)
+  int lost_count = 0;      // ボールを見失った連続フレーム数
+
+  while (1) {
+    int cam_count = robot_get_camera(cam, 32);
+    
+    if (cam_count > 0) {
+      // 新しいフレームを受信
+      if (cam_count == 1 && cam[0] == 0) {
+        // 何もボールが検出されなかった
+        lost_count++;
+      } else if (cam_count % 5 == 0) {
+        int best_x = -1;
+        int max_mag = -1;
+        
+        // 対象色の中で最も確信度(magnitude)が高いものを探す
+        for (int i = 0; i < cam_count; i += 5) {
+          if (cam[i] == target_color) {
+            if (cam[i+4] > max_mag) {
+              max_mag = cam[i+4];
+              best_x = cam[i+1];
+            }
+          }
+        }
+        
+        if (best_x >= 0) {
+          lost_count = 0; // 見つけたのでリセット
+          int error = best_x - 160;
+          
+          if (abs(error) <= tolerance) {
+            // 許容誤差内に入ったら停止して成功を返す
+            robot_set_motor(0, 0);
+            return true;
+          }
+          
+          // ボールが右(X>160)にある場合、右旋回（左モータ正、右モータ負）
+          float speed = error * kp;
+          
+          // 最低速度と最高速度の制限（モータの不感帯を乗り越えるため）
+          float min_speed = 30.0f;
+          float max_speed = 60.0f;
+          
+          if (speed > 0) {
+            speed += min_speed;
+            if (speed > max_speed) speed = max_speed;
+          } else {
+            speed -= min_speed;
+            if (speed < -max_speed) speed = -max_speed;
+          }
+          
+          robot_set_motor(speed, -speed);
+        } else {
+          // 対象色のボールがなかった
+          lost_count++;
+        }
+      }
+      
+      // 連続で10フレーム(約300ms)見失ったら諦める
+      if (lost_count > 10) {
+        robot_set_motor(0, 0);
+        return false;
+      }
+    }
+    
+    // 新しいフレームがない場合はそのままのモータ出力で待機
+    robot_wait_ms(10);
+  }
+}
 
 // ===== コース固有の動作 =====
 
