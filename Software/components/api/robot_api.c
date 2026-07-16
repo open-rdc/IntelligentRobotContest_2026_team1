@@ -6,6 +6,7 @@
 #include "motor.h"
 #include "sensor_data.h"
 #include "servo.h"
+#include "ball_sensor.h"
 #include "hardware/i2c.h"
 #include <stdio.h>
 #include "pico/stdio_usb.h"
@@ -33,6 +34,7 @@ void robot_init(void) {
   color_sensor_init();
   servo_init();
   motor_init();
+  ball_sensor_init();
 
   sleep_ms(2000);
 
@@ -106,6 +108,10 @@ int robot_get_camera(int out[], int max_count) {
   }
   g_sensor_data.camera_updated = false;
   return count;
+}
+
+bool robot_get_ball_sensor(void) {
+  return ball_sensor_read();
 }
 
 uint32_t robot_get_time_ms(void) {

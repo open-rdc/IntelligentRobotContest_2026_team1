@@ -29,6 +29,9 @@ void robot_reset_imu(void);
 // カラーセンサの値を取得 (B, G, Rの順)
 void robot_get_color_sensor(uint16_t out[3]);
 
+// ボール保持状態を取得 (true=保持あり, false=なし)
+bool robot_get_ball_sensor(void);
+
 // カメラの最新値を取得
 // 戻り値: 値の個数 (0 = 前回取得時から更新なし)
 int robot_get_camera(int out[], int max_count);

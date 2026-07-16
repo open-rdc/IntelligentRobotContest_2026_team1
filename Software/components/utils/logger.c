@@ -54,6 +54,10 @@ void logger_update(void) {
     robot_get_color_sensor(color);
     printf("Color:[B=%4d G=%4d R=%4d] ", color[0], color[1], color[2]);
 
+    // ボールセンサ
+    bool has_ball = robot_get_ball_sensor();
+    printf("Ball:[%s] ", has_ball ? "True" : "False");
+
     // モータ出力
     float motor_l, motor_r;
     robot_get_motor_speeds(&motor_l, &motor_r);

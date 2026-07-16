@@ -8,6 +8,7 @@ set(SHARED_SOURCES
     ${CMAKE_CURRENT_LIST_DIR}/sensors/camera.c
     ${CMAKE_CURRENT_LIST_DIR}/sensors/color_sensor.c
     ${CMAKE_CURRENT_LIST_DIR}/sensors/line_sensor.c
+    ${CMAKE_CURRENT_LIST_DIR}/sensors/ball_sensor.c
     ${CMAKE_CURRENT_LIST_DIR}/actuators/motor.c
     ${CMAKE_CURRENT_LIST_DIR}/actuators/servo.c
     ${CMAKE_CURRENT_LIST_DIR}/utils/logger.c
